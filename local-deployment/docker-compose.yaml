@@ -1,4 +1,4 @@
-name: yir
+name: local-deployment-med-ml
   
 volumes:
   redpanda-0: 
