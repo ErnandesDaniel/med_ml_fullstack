@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 
-import { useAppDispatch } from '../stores/hook'
-import { addError, addLoading, deleteLoading } from '../stores/utilsSlice'
+import { useAppDispatch } from '@/app/cytology/[id]/core/hooks'
+import { addError, addLoading, deleteLoading } from '@/app/uzi_view/[id]/store/utilsSlice'
 
 export const useRTKEffects = (
     { isLoading, error }: { isLoading?: boolean; error?: any },

@@ -9,7 +9,7 @@ import { IDiagnosisInfo } from '@/app/uzi_view/[id]/types/diagnosis'
 import { IPoint } from '../UziView/UziViewer/Viewer/interfaces/queries'
 import { ITirads } from '../types/tirads'
 
-import { prepareHeaders } from './headers'
+import { prepareHeaders } from '@/app/cytology/[id]/core/functions/prepareHeaders'
 import { transformNodes } from '../store/utils'
 
 export const nodesSegmentsApi = createApi({

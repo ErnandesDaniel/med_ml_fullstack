@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { prepareHeaders } from './headers'
+import { prepareHeaders } from '@/app/cytology/[id]/core/functions/prepareHeaders'
 
 export const cytologyApi = createApi({
     reducerPath: 'cytologyApi',

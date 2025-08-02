@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 import { IUzi, IUziPage } from '../types/uzi'
 
-import { prepareHeaders } from './headers'
+import { prepareHeaders } from '@/app/cytology/[id]/core/functions/prepareHeaders'
 
 export const uziApi = createApi({
     reducerPath: 'uziApi',

@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 import { IEchographics } from '@/app/uzi_view/[id]/types/echographics'
 
-import { prepareHeaders } from './headers'
+import { prepareHeaders } from '@/app/cytology/[id]/core/functions/prepareHeaders'
 
 export const echoApi = createApi({
     reducerPath: 'echoApi',

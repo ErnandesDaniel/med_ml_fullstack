@@ -1,7 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { prepareHeaders } from './headers'
-import { IApiGetMedWorker, IApiResponseGetShots } from '../types/api'
-import { IMedWorkerRes } from '../types/medWorker'
+import { prepareHeaders } from '@/app/cytology/[id]/core/functions/prepareHeaders'
 
 export const medWorkerAndPatientApi = createApi({
     reducerPath: 'medWorkerAndPatientApi',
@@ -11,13 +9,13 @@ export const medWorkerAndPatientApi = createApi({
         prepareHeaders,
     }),
     endpoints: (builder) => ({
-        getMedWorker: builder.query<IApiGetMedWorker, string>({
+        getMedWorker: builder.query<any, string>({
             query: (id) => `/med_worker/patients/${id}`,
             providesTags: ['MedWorker', 'Patient'],
         }),
         editMedWorker: builder.mutation<
             void,
-            { id: string; payload: Partial<IMedWorkerRes> }
+            { id: string; payload: Partial<any> }
         >({
             query: ({ id, payload }) => ({
                 url: `/med_worker/update/${id}`,
@@ -52,7 +50,7 @@ export const medWorkerAndPatientApi = createApi({
             query: (id) => ({ url: `/card/${id}/`, method: 'DELETE' }),
             invalidatesTags: ['Patient'],
         }),
-        getShots: builder.query<IApiResponseGetShots, string>({
+        getShots: builder.query<any, string>({
             query: (id) => `/patient/shots/${id}`,
             providesTags: ['Patient'],
         }),

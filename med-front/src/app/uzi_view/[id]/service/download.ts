@@ -1,4 +1,4 @@
-import { prepareHeaders } from './headers'
+import { prepareHeaders } from '@/app/uzi_view/[id]/service/headers'
 
 export const downloadUziImage = async (
     uzi_id: string,
