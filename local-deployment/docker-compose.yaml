@@ -180,8 +180,8 @@ services:
     profiles:
       - app
 
-  frontend:_service:
-    container_name: frontend:_service
+  frontend_service:
+    container_name: frontend_service
     build:
       context: ../med-front/
       dockerfile: Dockerfile
