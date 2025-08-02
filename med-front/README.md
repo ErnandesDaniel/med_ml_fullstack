@@ -1,9 +1,9 @@
-
 # Проект УЗИ (frontend)
 
 ## Начало работы
 
 Установите зависимости проекта, используя команду:
+
 ```bash
 npm install
 ```
@@ -30,3 +30,4 @@ npm run start
 
 ```bash
 npm install <some-package-name>
+```

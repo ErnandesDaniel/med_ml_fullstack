@@ -1,15 +1,15 @@
-import { configureStore } from "@reduxjs/toolkit";
-import { setupListeners } from "@reduxjs/toolkit/query";
+import { configureStore } from '@reduxjs/toolkit'
+import { setupListeners } from '@reduxjs/toolkit/query'
 
-import { uziApi } from "../service/uzi";
-import { nodesSegmentsApi } from "../service/nodesSegments";
-import { echoApi } from "../service/echo";
-import { patientApi } from "../service/patient";
+import { uziApi } from '../service/uzi'
+import { nodesSegmentsApi } from '../service/nodesSegments'
+import { echoApi } from '../service/echo'
+import { patientApi } from '../service/patient'
 
-import uziSlice from "./uziSlice";
-import refSlice from "./refSlice";
-import authSlice from "./authSlice";
-import utilsSlice from "./utilsSlice";
+import uziSlice from './uziSlice'
+import refSlice from './refSlice'
+import authSlice from './authSlice'
+import utilsSlice from './utilsSlice'
 
 export const store = configureStore({
     reducer: {
@@ -29,9 +29,9 @@ export const store = configureStore({
             .concat(nodesSegmentsApi.middleware)
             .concat(echoApi.middleware)
             .concat(patientApi.middleware),
-});
+})
 
-setupListeners(store.dispatch);
+setupListeners(store.dispatch)
 
-export type RootState = ReturnType<typeof store.getState>;
-export type AppDispatch = typeof store.dispatch;
+export type RootState = ReturnType<typeof store.getState>
+export type AppDispatch = typeof store.dispatch

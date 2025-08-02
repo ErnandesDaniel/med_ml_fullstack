@@ -1,27 +1,32 @@
-import React from "react";
-import { Flex, Typography, Button, Tooltip } from "antd";
-import { CopyOutlined, DeleteOutlined, InfoCircleOutlined, UndoOutlined } from "@ant-design/icons";
+import React from 'react'
+import { Flex, Typography, Button, Tooltip } from 'antd'
+import {
+    CopyOutlined,
+    DeleteOutlined,
+    InfoCircleOutlined,
+    UndoOutlined,
+} from '@ant-design/icons'
 
-import { Modals } from "@/app/uzi_view/[id]/types/types";
-import { IDiagnosisInfo } from "../../types/diagnosis";
+import { Modals } from '@/app/uzi_view/[id]/types/types'
+import { IDiagnosisInfo } from '../../types/diagnosis'
 
-import "./DiagnosisCard.css";
+import './DiagnosisCard.css'
 
-import { names } from "./props";
+import { names } from './props'
 
-const { Title } = Typography;
+const { Title } = Typography
 
 interface UziDiagnosisCardProps {
-    node: IDiagnosisInfo;
-    isActive?: boolean;
-    isToDelete?: boolean;
-    onClick: () => void;
-    needSpecialistTitle?: boolean;
-    editMode?: boolean;
-    openModal?: (modalType: Modals | null) => void;
-    deleteNode?: (id: string) => void;
-    undoDeleteNode?: (id: string) => void;
-    copyNode?: () => void;
+    node: IDiagnosisInfo
+    isActive?: boolean
+    isToDelete?: boolean
+    onClick: () => void
+    needSpecialistTitle?: boolean
+    editMode?: boolean
+    openModal?: (modalType: Modals | null) => void
+    deleteNode?: (id: string) => void
+    undoDeleteNode?: (id: string) => void
+    copyNode?: () => void
 }
 
 const DiagnosisCard: React.FC<UziDiagnosisCardProps> = ({
@@ -36,36 +41,47 @@ const DiagnosisCard: React.FC<UziDiagnosisCardProps> = ({
     undoDeleteNode,
     copyNode,
 }) => {
-    const classNames = "uzi-diagnosis-card" + (isActive ? " active" : "");
-    let styles = editMode ? "edit " : "";
+    const classNames = 'uzi-diagnosis-card' + (isActive ? ' active' : '')
+    let styles = editMode ? 'edit ' : ''
 
-    if (node.tirads === "tirads_5") {
-        styles += "diagnosis-red";
-    } else if (node.tirads === "tirads_23") {
-        styles += "diagnosis-green";
-    } else if (node.tirads === "tirads_4") {
-        styles += "diagnosis-orange";
+    if (node.tirads === 'tirads_5') {
+        styles += 'diagnosis-red'
+    } else if (node.tirads === 'tirads_23') {
+        styles += 'diagnosis-green'
+    } else if (node.tirads === 'tirads_4') {
+        styles += 'diagnosis-orange'
     }
 
-    const disablePropagation = (e: { stopPropagation: () => void }, callback: () => void) => {
-        e.stopPropagation();
-        callback();
-    };
+    const disablePropagation = (
+        e: { stopPropagation: () => void },
+        callback: () => void
+    ) => {
+        e.stopPropagation()
+        callback()
+    }
 
     return (
         <Flex
             className={classNames}
             onClick={onClick}
-            onDoubleClick={() => setModalType && setModalType("editNode")}
+            onDoubleClick={() => setModalType && setModalType('editNode')}
         >
-            <Flex justify="space-between" align="center" className="uzi-card-content">
+            <Flex
+                justify="space-between"
+                align="center"
+                className="uzi-card-content"
+            >
                 <Flex vertical>
-                    <Title level={5} className="mt-0 align-start" type="secondary">
+                    <Title
+                        level={5}
+                        className="mt-0 align-start"
+                        type="secondary"
+                    >
                         {editMode && (
                             <Tooltip title="Для смены типа образования дважды нажмите на узел">
                                 <InfoCircleOutlined />
                             </Tooltip>
-                        )}{" "}
+                        )}{' '}
                         {node.title} {isToDelete && <DeleteOutlined />}
                     </Title>
                     <Flex vertical>
@@ -79,21 +95,36 @@ const DiagnosisCard: React.FC<UziDiagnosisCardProps> = ({
                         </Title>
                     </Flex>
                 </Flex>
-                {editMode && node.specialist === "ai" && (
+                {editMode && node.specialist === 'ai' && (
                     <Tooltip title="Скопировать сегменты и информацию узла на новый">
-                        <Button onClick={(e) => copyNode && disablePropagation(e, copyNode)}>
+                        <Button
+                            onClick={(e) =>
+                                copyNode && disablePropagation(e, copyNode)
+                            }
+                        >
                             <CopyOutlined />
                         </Button>
                     </Tooltip>
                 )}
-                {editMode && node.specialist !== "ai" && (
-                    <Tooltip title={isToDelete ? "Удалить узел" : "Отменить удаление узла"}>
+                {editMode && node.specialist !== 'ai' && (
+                    <Tooltip
+                        title={
+                            isToDelete
+                                ? 'Удалить узел'
+                                : 'Отменить удаление узла'
+                        }
+                    >
                         <Button
                             onClick={(e) =>
                                 !isToDelete
-                                    ? deleteNode && disablePropagation(e, () => deleteNode(node.id))
+                                    ? deleteNode &&
+                                      disablePropagation(e, () =>
+                                          deleteNode(node.id)
+                                      )
                                     : undoDeleteNode &&
-                                      disablePropagation(e, () => undoDeleteNode(node.id))
+                                      disablePropagation(e, () =>
+                                          undoDeleteNode(node.id)
+                                      )
                             }
                         >
                             {!isToDelete && <DeleteOutlined />}
@@ -103,7 +134,7 @@ const DiagnosisCard: React.FC<UziDiagnosisCardProps> = ({
                 )}
             </Flex>
         </Flex>
-    );
-};
+    )
+}
 
-export default DiagnosisCard;
+export default DiagnosisCard

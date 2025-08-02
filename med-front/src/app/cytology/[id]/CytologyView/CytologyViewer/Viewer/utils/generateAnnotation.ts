@@ -1,17 +1,17 @@
-import { ShapeType } from "@annotorious/openseadragon";
+import { ShapeType } from '@annotorious/openseadragon'
 
-import { ISegmentStack } from "@cytology/core/types/segments";
+import { ISegmentStack } from '@cytology/core/types/segments'
 
-import { minMaxPoint } from "./minMaxPoint";
+import { minMaxPoint } from './minMaxPoint'
 
 export const generateAnnotation = (segment: ISegmentStack) => {
     return {
         id: `${segment.id}`,
         bodies: [
             {
-                id: "",
+                id: '',
                 annotation: `${segment.id}`,
-                purpose: "tagging",
+                purpose: 'tagging',
                 value: JSON.stringify({
                     ai: segment.is_ai,
                     toDelete: segment.isDeleted,
@@ -32,9 +32,12 @@ export const generateAnnotation = (segment: ISegmentStack) => {
                             y: segmentPoint.y,
                         }))
                     ),
-                    points: segment.points.map((segmentPoint) => [segmentPoint.x, segmentPoint.y]),
+                    points: segment.points.map((segmentPoint) => [
+                        segmentPoint.x,
+                        segmentPoint.y,
+                    ]),
                 },
             },
         },
-    };
-};
+    }
+}

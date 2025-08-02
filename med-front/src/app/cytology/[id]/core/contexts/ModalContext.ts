@@ -1,23 +1,23 @@
-import type { ModalProps } from "antd";
-import { createContext, type ReactNode } from "react";
+import type { ModalProps } from 'antd'
+import { createContext, type ReactNode } from 'react'
 
 export interface IModalConfig {
-    content: ReactNode;
-    props?: Omit<ModalProps, "open" | "onCancel">;
+    content: ReactNode
+    props?: Omit<ModalProps, 'open' | 'onCancel'>
 }
 
 export interface IModalContext {
-    open: (config: IModalConfig) => void;
-    close: () => void;
-    changeModalProps: (props: IModalConfig["props"]) => void;
+    open: (config: IModalConfig) => void
+    close: () => void
+    changeModalProps: (props: IModalConfig['props']) => void
 }
 
 const defaultValues: IModalContext = {
     open: () => {},
     close: () => {},
     changeModalProps: () => {},
-};
+}
 
-const ModalContext = createContext<IModalContext>(defaultValues);
+const ModalContext = createContext<IModalContext>(defaultValues)
 
-export default ModalContext;
+export default ModalContext

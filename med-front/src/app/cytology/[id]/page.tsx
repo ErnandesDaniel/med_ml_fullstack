@@ -1,17 +1,22 @@
-"use client";
-import React from "react";
-import { Provider } from "react-redux";
-import { useParams } from "next/navigation";
+'use client'
+import React from 'react'
+import { Provider } from 'react-redux'
+import { useParams } from 'next/navigation'
 
-import { store } from "./core/store";
+import { store } from './core/store'
 
-import { LoadingWrapper, MessageWrapper, ModalWrapper, PageWrapper } from "./common/wrappers";
+import {
+    LoadingWrapper,
+    MessageWrapper,
+    ModalWrapper,
+    PageWrapper,
+} from './common/wrappers'
 
-import CytologyView from "./CytologyView/CytologyView";
+import CytologyView from './CytologyView/CytologyView'
 
 export default function Page() {
-    const params = useParams();
-    const cytologyId = params.id as string;
+    const params = useParams()
+    const cytologyId = params.id as string
 
     return (
         <Provider store={store}>
@@ -19,11 +24,13 @@ export default function Page() {
                 <MessageWrapper>
                     <ModalWrapper>
                         <PageWrapper>
-                            <CytologyView generalCytologyId={Number(cytologyId)} />
+                            <CytologyView
+                                generalCytologyId={Number(cytologyId)}
+                            />
                         </PageWrapper>
                     </ModalWrapper>
                 </MessageWrapper>
             </LoadingWrapper>
         </Provider>
-    );
+    )
 }

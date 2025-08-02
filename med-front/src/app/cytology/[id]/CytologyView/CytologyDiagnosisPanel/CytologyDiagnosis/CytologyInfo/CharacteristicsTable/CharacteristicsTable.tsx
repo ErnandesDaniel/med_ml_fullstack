@@ -1,90 +1,97 @@
-import React, { useState, useEffect, useContext } from "react";
-import { Table } from "antd";
+import React, { useState, useEffect, useContext } from 'react'
+import { Table } from 'antd'
 
-import { ModalContext } from "@cytology/core/contexts";
+import { ModalContext } from '@cytology/core/contexts'
 
 import {
     ICytologyInfoCellCharacteristics,
     ICytologyInfoClusterCharacteristics,
-} from "@cytology/core/types/cytology";
+} from '@cytology/core/types/cytology'
 
-import { characteristicsDict, columns, TableItem } from "./props";
+import { characteristicsDict, columns, TableItem } from './props'
 
-import "./CharacteristicsTable.css";
+import './CharacteristicsTable.css'
 
 type CombinedCharacteristics = ICytologyInfoCellCharacteristics &
-    ICytologyInfoClusterCharacteristics;
+    ICytologyInfoClusterCharacteristics
 
 interface CharacteristicsTableProps {
-    characteristics: CombinedCharacteristics;
+    characteristics: CombinedCharacteristics
 }
 
-const CharacteristicsTable: React.FC<CharacteristicsTableProps> = ({ characteristics }) => {
-    const [tableData, setTableData] = useState<TableItem[]>([]);
-    const { changeModalProps } = useContext(ModalContext);
+const CharacteristicsTable: React.FC<CharacteristicsTableProps> = ({
+    characteristics,
+}) => {
+    const [tableData, setTableData] = useState<TableItem[]>([])
+    const { changeModalProps } = useContext(ModalContext)
 
     useEffect(() => {
         changeModalProps({
-            title: "Результаты исследования",
+            title: 'Результаты исследования',
             footer: [],
             centered: true,
-            width: "70%",
-        });
-    }, []);
+            width: '70%',
+        })
+    }, [])
 
     useEffect(() => {
-        const fieldNames = Object.keys(characteristics) as Array<keyof CombinedCharacteristics>;
+        const fieldNames = Object.keys(characteristics) as Array<
+            keyof CombinedCharacteristics
+        >
 
         const tableData: TableItem[] = fieldNames.map((fieldName, id) => {
-            const fieldValue = characteristics[fieldName];
-            const fieldMeta = characteristicsDict[fieldName];
+            const fieldValue = characteristics[fieldName]
+            const fieldMeta = characteristicsDict[fieldName]
 
-            const baseItem: Omit<TableItem, "references" | "status"> = {
+            const baseItem: Omit<TableItem, 'references' | 'status'> = {
                 id,
                 name: fieldMeta.name,
                 result: fieldValue,
-            };
+            }
 
             if (fieldMeta.ref) {
-                const { normStart, normEnd } = fieldMeta;
-                const isNormal = fieldValue >= normStart && fieldValue <= normEnd;
-                let status: 0 | 1 | 2 = isNormal ? 0 : 1;
+                const { normStart, normEnd } = fieldMeta
+                const isNormal =
+                    fieldValue >= normStart && fieldValue <= normEnd
+                let status: 0 | 1 | 2 = isNormal ? 0 : 1
 
                 if (!isNormal) {
                     const deviation =
-                        fieldValue < normStart ? normStart - fieldValue : fieldValue - normEnd;
-                    status = deviation >= 40 ? 2 : 1;
+                        fieldValue < normStart
+                            ? normStart - fieldValue
+                            : fieldValue - normEnd
+                    status = deviation >= 40 ? 2 : 1
                 }
 
                 return {
                     ...baseItem,
                     references: [normStart, normEnd] as [number, number],
                     status,
-                };
+                }
             }
 
             return {
                 ...baseItem,
                 references: [0, 0] as [number, number],
                 status: 1,
-            };
-        });
+            }
+        })
 
-        setTableData(tableData);
-    }, [characteristics]);
+        setTableData(tableData)
+    }, [characteristics])
 
     const rowClassName = (record: TableItem) => {
         switch (record.status) {
             case 0:
-                return "row-normal";
+                return 'row-normal'
             case 1:
-                return "row-warning";
+                return 'row-warning'
             case 2:
-                return "row-error";
+                return 'row-error'
             default:
-                return "";
+                return ''
         }
-    };
+    }
 
     return (
         <Table
@@ -96,7 +103,7 @@ const CharacteristicsTable: React.FC<CharacteristicsTableProps> = ({ characteris
             rowHoverable={false}
             rowKey="id"
         />
-    );
-};
+    )
+}
 
-export default CharacteristicsTable;
+export default CharacteristicsTable

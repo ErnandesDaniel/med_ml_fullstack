@@ -1,38 +1,38 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
-import dynamic from "next/dynamic";
-import { Annotorious } from "@annotorious/react";
-import { Flex } from "antd";
-import { DisconnectOutlined } from "@ant-design/icons";
+import React, { useCallback, useEffect, useRef, useState } from 'react'
+import dynamic from 'next/dynamic'
+import { Annotorious } from '@annotorious/react'
+import { Flex } from 'antd'
+import { DisconnectOutlined } from '@ant-design/icons'
 
-import EditPanel from "@/app/uzi_view/[id]/UziView/UziViewer/EditPanel/EditPanel";
-import NavButton from "@/app/uzi_view/[id]/UziView/UziViewer/NavButton/NavButton";
+import EditPanel from '@/app/uzi_view/[id]/UziView/UziViewer/EditPanel/EditPanel'
+import NavButton from '@/app/uzi_view/[id]/UziView/UziViewer/NavButton/NavButton'
 
-import { Tools } from "@/app/uzi_view/[id]/types/types";
-import { ISegmentRedux } from "@/app/uzi_view/[id]/types/segments";
-import { IPoint } from "@/app/uzi_view/[id]/UziView/UziViewer/Viewer/interfaces/queries";
-import { IUziPage } from "../../types/uzi";
+import { Tools } from '@/app/uzi_view/[id]/types/types'
+import { ISegmentRedux } from '@/app/uzi_view/[id]/types/segments'
+import { IPoint } from '@/app/uzi_view/[id]/UziView/UziViewer/Viewer/interfaces/queries'
+import { IUziPage } from '../../types/uzi'
 
-import { DOWNLOAD_UZI } from "../../types/consts";
+import { DOWNLOAD_UZI } from '../../types/consts'
 
-import { useAppDispatch, useAppSelector } from "@/app/uzi_view/[id]/store/hook";
+import { useAppDispatch, useAppSelector } from '@/app/uzi_view/[id]/store/hook'
 
-import { downloadUziImage } from "@/app/uzi_view/[id]/service/download";
+import { downloadUziImage } from '@/app/uzi_view/[id]/service/download'
 
-import { addLoading, deleteLoading } from "../../store/utilsSlice";
-import { addSegmentToNode, changeSegment } from "../../store/uziSlice";
+import { addLoading, deleteLoading } from '../../store/utilsSlice'
+import { addSegmentToNode, changeSegment } from '../../store/uziSlice'
 
-import "@annotorious/react/annotorious-react.css";
-import "./UziViewer.css";
+import '@annotorious/react/annotorious-react.css'
+import './UziViewer.css'
 
-const Viewer = dynamic(() => import("./Viewer/Viewer"), { ssr: false });
+const Viewer = dynamic(() => import('./Viewer/Viewer'), { ssr: false })
 
 interface UziViewerProps {
-    isEditMode: boolean;
-    uziId: string;
-    segments: ISegmentRedux[];
-    setIndex: React.Dispatch<React.SetStateAction<number>>;
-    index: number;
-    uziIds: IUziPage[] | undefined;
+    isEditMode: boolean
+    uziId: string
+    segments: ISegmentRedux[]
+    setIndex: React.Dispatch<React.SetStateAction<number>>
+    index: number
+    uziIds: IUziPage[] | undefined
 }
 
 const UziViewer: React.FC<UziViewerProps> = ({
@@ -43,19 +43,19 @@ const UziViewer: React.FC<UziViewerProps> = ({
     index,
     uziIds,
 }) => {
-    const [imageUrl, setImageUrl] = useState<string>("");
-    const [tool, setTool] = useState<Tools>("rectangle");
-    const [isLoading, setIsLoading] = useState(false);
+    const [imageUrl, setImageUrl] = useState<string>('')
+    const [tool, setTool] = useState<Tools>('rectangle')
+    const [isLoading, setIsLoading] = useState(false)
 
-    const dispatch = useAppDispatch();
-    const accessToken = useAppSelector((state) => state.auth.accessToken);
-    const { selectedNode, imageId } = useAppSelector((state) => state.uzi);
+    const dispatch = useAppDispatch()
+    const accessToken = useAppSelector((state) => state.auth.accessToken)
+    const { selectedNode, imageId } = useAppSelector((state) => state.uzi)
 
-    const callbackNextIndex = () => setIndex((prevState) => prevState + 1);
-    const callbackPrevIndex = () => setIndex((prevState) => prevState - 1);
+    const callbackNextIndex = () => setIndex((prevState) => prevState + 1)
+    const callbackPrevIndex = () => setIndex((prevState) => prevState - 1)
 
-    const selectedNodeRef = useRef(selectedNode);
-    const imageIdRef = useRef(imageId);
+    const selectedNodeRef = useRef(selectedNode)
+    const imageIdRef = useRef(imageId)
 
     const handleAddSegment = useCallback(
         (contour: IPoint[]) => {
@@ -69,17 +69,26 @@ const UziViewer: React.FC<UziViewerProps> = ({
                             node_id: selectedNodeRef.current.id,
                             contor: contour,
                             image_id: imageIdRef.current,
-                            tirads_23: selectedNodeRef.current.tirads === "tirads_23" ? 1 : 0,
-                            tirads_4: selectedNodeRef.current.tirads === "tirads_4" ? 1 : 0,
-                            tirads_5: selectedNodeRef.current.tirads === "tirads_5" ? 1 : 0,
+                            tirads_23:
+                                selectedNodeRef.current.tirads === 'tirads_23'
+                                    ? 1
+                                    : 0,
+                            tirads_4:
+                                selectedNodeRef.current.tirads === 'tirads_4'
+                                    ? 1
+                                    : 0,
+                            tirads_5:
+                                selectedNodeRef.current.tirads === 'tirads_5'
+                                    ? 1
+                                    : 0,
                             exist: false,
                         },
                     })
-                );
+                )
             }
         },
         [dispatch, selectedNodeRef]
-    );
+    )
 
     const handleChangeSegment = useCallback(
         (segmentId: string, contour: IPoint[]) => {
@@ -90,67 +99,73 @@ const UziViewer: React.FC<UziViewerProps> = ({
                         segmentId,
                         contour,
                     })
-                );
+                )
             }
         },
         [selectedNodeRef, uziId]
-    );
+    )
 
     useEffect(() => {
-        setTool("rectangle");
-    }, [isEditMode]);
+        setTool('rectangle')
+    }, [isEditMode])
 
     useEffect(() => {
-        selectedNodeRef.current = selectedNode;
-    }, [selectedNode]);
+        selectedNodeRef.current = selectedNode
+    }, [selectedNode])
 
     useEffect(() => {
-        imageIdRef.current = imageId;
-    }, [imageId]);
+        imageIdRef.current = imageId
+    }, [imageId])
 
     useEffect(() => {
         if (isLoading) {
-            dispatch(addLoading(DOWNLOAD_UZI));
+            dispatch(addLoading(DOWNLOAD_UZI))
         } else {
-            dispatch(deleteLoading(DOWNLOAD_UZI));
+            dispatch(deleteLoading(DOWNLOAD_UZI))
         }
-    }, [dispatch, isLoading]);
+    }, [dispatch, isLoading])
 
     useEffect(() => {
         if (uziIds) {
             const downloadHandler = async () => {
-                setIsLoading(true);
+                setIsLoading(true)
 
-                return await downloadUziImage(uziId, uziIds[index].id, accessToken);
-            };
+                return await downloadUziImage(
+                    uziId,
+                    uziIds[index].id,
+                    accessToken
+                )
+            }
 
             downloadHandler()
                 .then((response) => {
                     if (response) {
-                        const lastImageUrl = imageUrl;
+                        const lastImageUrl = imageUrl
 
-                        setImageUrl(response);
+                        setImageUrl(response)
 
-                        if (lastImageUrl !== "") {
-                            window.URL.revokeObjectURL(lastImageUrl);
+                        if (lastImageUrl !== '') {
+                            window.URL.revokeObjectURL(lastImageUrl)
                         }
                     }
                 })
                 .catch((error) => {
-                    console.error(error);
-                });
+                    console.error(error)
+                })
 
-            setIsLoading(false);
+            setIsLoading(false)
         }
-    }, [uziIds, index]);
+    }, [uziIds, index])
 
     return (
         <Annotorious>
             <>
                 {isEditMode && <EditPanel tool={tool} setTool={setTool} />}
                 <Flex justify="center" align="center" className="uzi-viewer">
-                    {imageUrl === "" ? (
-                        <DisconnectOutlined style={{ fontSize: 50, color: "#8c8c8c" }} />
+                    {imageUrl === '' ? (
+                        <DisconnectOutlined
+                            style={{ fontSize: 50, color: '#8c8c8c' }}
+                        />
                     ) : (
                         <>
                             <NavButton
@@ -171,7 +186,9 @@ const UziViewer: React.FC<UziViewerProps> = ({
                                 changeSegment={handleChangeSegment}
                             />
                             <NavButton
-                                disabled={!!uziIds && index === uziIds.length - 1}
+                                disabled={
+                                    !!uziIds && index === uziIds.length - 1
+                                }
                                 onClick={callbackNextIndex}
                                 position="right"
                             />
@@ -180,7 +197,7 @@ const UziViewer: React.FC<UziViewerProps> = ({
                 </Flex>
             </>
         </Annotorious>
-    );
-};
+    )
+}
 
-export default UziViewer;
+export default UziViewer

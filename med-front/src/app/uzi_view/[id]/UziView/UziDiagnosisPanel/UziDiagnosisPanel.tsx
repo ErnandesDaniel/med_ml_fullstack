@@ -1,20 +1,20 @@
-import React from "react";
+import React from 'react'
 
-import UziDiagnosisEdit from ".//UziDiagnosisEdit/UziDiagnosisEdit";
-import UziDiagnosis from "./UziDiagnosis/UziDiagnosis";
-import BlockSpace from "@/app/uzi_view/[id]/UziView/UziDiagnosisPanel/BlockSpace/BlockSpace";
+import UziDiagnosisEdit from './/UziDiagnosisEdit/UziDiagnosisEdit'
+import UziDiagnosis from './UziDiagnosis/UziDiagnosis'
+import BlockSpace from '@/app/uzi_view/[id]/UziView/UziDiagnosisPanel/BlockSpace/BlockSpace'
 
-import { Modals, Modes } from "@/app/uzi_view/[id]/types/types";
-import { IDiagnosisInfo } from "@/app/uzi_view/[id]/types/diagnosis";
+import { Modals, Modes } from '@/app/uzi_view/[id]/types/types'
+import { IDiagnosisInfo } from '@/app/uzi_view/[id]/types/diagnosis'
 
-import { useAppDispatch, useAppSelector } from "@/app/uzi_view/[id]/store/hook";
-import { setSelectedNode } from "@/app/uzi_view/[id]/store/uziSlice";
+import { useAppDispatch, useAppSelector } from '@/app/uzi_view/[id]/store/hook'
+import { setSelectedNode } from '@/app/uzi_view/[id]/store/uziSlice'
 
 interface UziDiagnosisPanelProps {
-    mode: Modes;
-    nodes: IDiagnosisInfo[];
-    changeMode: (newMode: Modes) => void;
-    setModalType: (value: Modals | null) => void;
+    mode: Modes
+    nodes: IDiagnosisInfo[]
+    changeMode: (newMode: Modes) => void
+    setModalType: (value: Modals | null) => void
 }
 
 const UziDiagnosisPanel: React.FC<UziDiagnosisPanelProps> = ({
@@ -23,20 +23,20 @@ const UziDiagnosisPanel: React.FC<UziDiagnosisPanelProps> = ({
     changeMode,
     setModalType,
 }) => {
-    const dispatch = useAppDispatch();
+    const dispatch = useAppDispatch()
 
-    const selectedNode = useAppSelector((state) => state.uzi.selectedNode);
+    const selectedNode = useAppSelector((state) => state.uzi.selectedNode)
 
     const handleOnClickCard = (newValue: IDiagnosisInfo | null) =>
-        dispatch(setSelectedNode(newValue));
+        dispatch(setSelectedNode(newValue))
 
     return (
         <>
             <BlockSpace />
-            {mode === "view" ? (
+            {mode === 'view' ? (
                 <UziDiagnosis
                     nodes={nodes}
-                    openEdit={() => changeMode("edit")}
+                    openEdit={() => changeMode('edit')}
                     selectedNode={selectedNode}
                     onClickCard={handleOnClickCard}
                 />
@@ -44,13 +44,13 @@ const UziDiagnosisPanel: React.FC<UziDiagnosisPanelProps> = ({
                 <UziDiagnosisEdit
                     initNodes={nodes}
                     openModal={setModalType}
-                    openViewMode={() => changeMode("view")}
+                    openViewMode={() => changeMode('view')}
                     selectedNode={selectedNode}
                     onClickCard={handleOnClickCard}
                 />
             )}
         </>
-    );
-};
+    )
+}
 
-export default UziDiagnosisPanel;
+export default UziDiagnosisPanel

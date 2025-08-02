@@ -1,20 +1,20 @@
-import React, { useCallback, useEffect, useRef } from "react";
-import { PopupProps } from "@annotorious/react";
-import { Card, Flex, Typography } from "antd";
+import React, { useCallback, useEffect, useRef } from 'react'
+import { PopupProps } from '@annotorious/react'
+import { Card, Flex, Typography } from 'antd'
 
-import { ISegmentDetails } from "@cytology/core/types/segments";
-import { useAppDispatch, useAppSelector } from "@cytology/core/hooks";
-import { markAsDeleted, markAsUnDeleted } from "@cytology/core/store";
+import { ISegmentDetails } from '@cytology/core/types/segments'
+import { useAppDispatch, useAppSelector } from '@cytology/core/hooks'
+import { markAsDeleted, markAsUnDeleted } from '@cytology/core/store'
 
-import { CommentPopupHeader } from "./CommentPopupHeader/CommentPopupHeader";
+import { CommentPopupHeader } from './CommentPopupHeader/CommentPopupHeader'
 
-import "./CommentPopup.css";
+import './CommentPopup.css'
 
-const { Title, Text } = Typography;
+const { Title, Text } = Typography
 
 interface CommentPopupProps extends PopupProps {
-    needInput?: boolean;
-    isEditingMode?: boolean;
+    needInput?: boolean
+    isEditingMode?: boolean
 }
 
 const CommentPopup: React.FC<CommentPopupProps> = ({
@@ -25,25 +25,27 @@ const CommentPopup: React.FC<CommentPopupProps> = ({
     isEditingMode = false,
 }) => {
     // const [comment, setComment] = useState('');
-    const dispatch = useAppDispatch();
-    const currentSegment = useAppSelector((state) => state.segment.currentSegment);
-    const currentSegmentRef = useRef(currentSegment);
+    const dispatch = useAppDispatch()
+    const currentSegment = useAppSelector(
+        (state) => state.segment.currentSegment
+    )
+    const currentSegmentRef = useRef(currentSegment)
 
     useEffect(() => {
-        currentSegmentRef.current = currentSegment;
-    }, [currentSegment]);
+        currentSegmentRef.current = currentSegment
+    }, [currentSegment])
 
-    const tagging = annotation.bodies.find((body) => body.purpose === "tagging");
+    const tagging = annotation.bodies.find((body) => body.purpose === 'tagging')
     const response:
         | {
-              ai: boolean;
-              toDelete: boolean;
-              toUpdate: boolean;
-              toAdd: boolean;
-              details?: ISegmentDetails;
+              ai: boolean
+              toDelete: boolean
+              toUpdate: boolean
+              toAdd: boolean
+              details?: ISegmentDetails
           }
-        | undefined = tagging?.value ? JSON.parse(tagging.value) : undefined;
-    const segmentId: string | undefined = tagging?.annotation || undefined;
+        | undefined = tagging?.value ? JSON.parse(tagging.value) : undefined
+    const segmentId: string | undefined = tagging?.annotation || undefined
 
     const onDelete = useCallback(() => {
         if (segmentId && currentSegmentRef.current) {
@@ -53,14 +55,19 @@ const CommentPopup: React.FC<CommentPopupProps> = ({
                     segType: currentSegmentRef.current,
                     isNew: response?.toAdd,
                 })
-            );
+            )
         }
-    }, [currentSegmentRef]);
+    }, [currentSegmentRef])
     const onUndoDelete = useCallback(() => {
         if (segmentId && currentSegmentRef.current) {
-            dispatch(markAsUnDeleted({ id: segmentId, segType: currentSegmentRef.current }));
+            dispatch(
+                markAsUnDeleted({
+                    id: segmentId,
+                    segType: currentSegmentRef.current,
+                })
+            )
         }
-    }, [currentSegmentRef]);
+    }, [currentSegmentRef])
 
     // useEffect(() => {
     //     const commentBody = annotation.bodies.find(body => body.purpose === 'commenting');
@@ -145,7 +152,9 @@ const CommentPopup: React.FC<CommentPopupProps> = ({
                                 <Title level={5} className="mb-0">
                                     Nuclear cytoplasmic ratio
                                 </Title>
-                                <Text>{response.details.nuclear_cytoplasmic_ratio}</Text>
+                                <Text>
+                                    {response.details.nuclear_cytoplasmic_ratio}
+                                </Text>
                             </Flex>
                         </Flex>
                     )}
@@ -182,7 +191,7 @@ const CommentPopup: React.FC<CommentPopupProps> = ({
                 </Card>
             )}
         </>
-    );
-};
+    )
+}
 
-export default CommentPopup;
+export default CommentPopup

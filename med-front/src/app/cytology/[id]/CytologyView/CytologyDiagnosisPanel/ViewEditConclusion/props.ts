@@ -1,6 +1,6 @@
-import type { SelectProps } from "antd";
+import type { SelectProps } from 'antd'
 
-export const localizationOptions: SelectProps["options"] = [
+export const localizationOptions: SelectProps['options'] = [
     {
         value: 'GS',
         label: 'Генитальный мазок',
@@ -21,4 +21,4 @@ export const localizationOptions: SelectProps["options"] = [
         value: 'LNP',
         label: 'Лимфатический узел',
     },
-];
+]

@@ -1,29 +1,29 @@
-import { useContext, useEffect } from "react";
-import { Flex, Timeline } from "antd";
+import { useContext, useEffect } from 'react'
+import { Flex, Timeline } from 'antd'
 
-import { ModalContext } from "@cytology/core/contexts";
-import { ICytologyHistory } from "@cytology/core/types/cytology";
+import { ModalContext } from '@cytology/core/contexts'
+import { ICytologyHistory } from '@cytology/core/types/cytology'
 
-import CytologyHistoryCard from "./CytologyHistoryCard/CytologyHistoryCard";
+import CytologyHistoryCard from './CytologyHistoryCard/CytologyHistoryCard'
 
-import "./CytologyHistory.css";
+import './CytologyHistory.css'
 
 interface CytologyHistoryProps {
-    history: ICytologyHistory;
+    history: ICytologyHistory
 }
 
 const CytologyHistory: React.FC<CytologyHistoryProps> = ({ history }) => {
-    const { changeModalProps } = useContext(ModalContext);
+    const { changeModalProps } = useContext(ModalContext)
 
     useEffect(() => {
         changeModalProps({
-            title: "История изменений",
+            title: 'История изменений',
             footer: [],
             centered: true,
-            height: "80%",
-            rootClassName: "cytology-history-wrapper",
-        });
-    }, []);
+            height: '80%',
+            rootClassName: 'cytology-history-wrapper',
+        })
+    }, [])
 
     return (
         <Flex className="cytology-history-container" vertical>
@@ -34,7 +34,7 @@ const CytologyHistory: React.FC<CytologyHistoryProps> = ({ history }) => {
                 }))}
             />
         </Flex>
-    );
-};
+    )
+}
 
-export default CytologyHistory;
+export default CytologyHistory

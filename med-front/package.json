@@ -13,8 +13,8 @@
     },
     "dependencies": {
         "@annotorious/openseadragon": "^3.0.20",
-    "@annotorious/react": "^3.0.20",
-    "@ant-design/icons": "^5.5.1",
+        "@annotorious/react": "^3.0.20",
+        "@ant-design/icons": "^5.5.1",
         "@ant-design/nextjs-registry": "^1.0.1",
         "@eslint/js": "^9.19.0",
         "axios": "^1.7.9",
@@ -30,8 +30,8 @@
         "react": "^18",
         "react-dom": "^18",
         "@reduxjs/toolkit": "^2.5.0",
-    "react-redux": "^9.2.0",
-    "react-query": "^3.39.3",
+        "react-redux": "^9.2.0",
+        "react-query": "^3.39.3",
         "swr": "^2.3.0"
     },
     "devDependencies": {
@@ -51,6 +51,6 @@
         "eslint-plugin-react-hooks": "^5.2.0",
         "prettier": "^3.5.3",
         "typescript": "^5",
-    "sass": "^1.83.0"
+        "sass": "^1.83.0"
     }
 }

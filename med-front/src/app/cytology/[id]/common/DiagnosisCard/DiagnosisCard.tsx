@@ -1,27 +1,32 @@
-import React from "react";
-import { Flex, Typography, Button, Tooltip } from "antd";
-import { CopyOutlined, DeleteOutlined, InfoCircleOutlined, UndoOutlined } from "@ant-design/icons";
+import React from 'react'
+import { Flex, Typography, Button, Tooltip } from 'antd'
+import {
+    CopyOutlined,
+    DeleteOutlined,
+    InfoCircleOutlined,
+    UndoOutlined,
+} from '@ant-design/icons'
 
-import { Modals } from "@/app/cytology/[id]/core/types/basic";
-import { segmentsTranslated, SegmentType } from "@cytology/core/types/segments";
+import { Modals } from '@/app/cytology/[id]/core/types/basic'
+import { segmentsTranslated, SegmentType } from '@cytology/core/types/segments'
 
-import "./DiagnosisCard.css";
+import './DiagnosisCard.css'
 
-import { names } from "./props";
+import { names } from './props'
 
-const { Title } = Typography;
+const { Title } = Typography
 
 interface CytologyDiagnosisCardProps {
-    segmentType: SegmentType;
-    isActive?: boolean;
-    isToDelete?: boolean;
-    onClick: () => void;
-    needSpecialistTitle?: boolean;
-    editMode?: boolean;
-    openModal?: (modalType: Modals | null) => void;
-    deleteNode?: (id: string) => void;
-    undoDeleteNode?: (id: string) => void;
-    copyNode?: () => void;
+    segmentType: SegmentType
+    isActive?: boolean
+    isToDelete?: boolean
+    onClick: () => void
+    needSpecialistTitle?: boolean
+    editMode?: boolean
+    openModal?: (modalType: Modals | null) => void
+    deleteNode?: (id: string) => void
+    undoDeleteNode?: (id: string) => void
+    copyNode?: () => void
 }
 
 const DiagnosisCard: React.FC<CytologyDiagnosisCardProps> = ({
@@ -36,8 +41,8 @@ const DiagnosisCard: React.FC<CytologyDiagnosisCardProps> = ({
     undoDeleteNode,
     copyNode,
 }) => {
-    const classNames = "cytology-diagnosis-card" + (isActive ? " active" : "");
-    const styles = editMode ? "edit " : "";
+    const classNames = 'cytology-diagnosis-card' + (isActive ? ' active' : '')
+    const styles = editMode ? 'edit ' : ''
 
     // if (node.tirads === "tirads_5") {
     //     styles += "diagnosis-red";
@@ -47,18 +52,25 @@ const DiagnosisCard: React.FC<CytologyDiagnosisCardProps> = ({
     //     styles += "diagnosis-orange";
     // }
 
-    const disablePropagation = (e: { stopPropagation: () => void }, callback: () => void) => {
-        e.stopPropagation();
-        callback();
-    };
+    const disablePropagation = (
+        e: { stopPropagation: () => void },
+        callback: () => void
+    ) => {
+        e.stopPropagation()
+        callback()
+    }
 
     return (
         <Flex
             className={classNames}
             onClick={onClick}
-            onDoubleClick={() => setModalType && setModalType("editNode")}
+            onDoubleClick={() => setModalType && setModalType('editNode')}
         >
-            <Flex justify="space-between" align="center" className="cytology-card-content">
+            <Flex
+                justify="space-between"
+                align="center"
+                className="cytology-card-content"
+            >
                 <Flex vertical>
                     {/* <Title level={5} className="mt-0 align-start" type="secondary"> */}
                     {/* {editMode && (
@@ -89,7 +101,7 @@ const DiagnosisCard: React.FC<CytologyDiagnosisCardProps> = ({
                 )} */}
             </Flex>
         </Flex>
-    );
-};
+    )
+}
 
-export default DiagnosisCard;
+export default DiagnosisCard

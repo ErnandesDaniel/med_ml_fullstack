@@ -71,13 +71,13 @@
 
 :root {
     --stroke-color: #00000073;
-    --filter: "";
+    --filter: '';
 }
 
 .a9s-handle {
     rx: 50% !important;
     stroke: var(--stroke-color, #00000073) !important;
-    filter: var(--filter, "") !important;
+    filter: var(--filter, '') !important;
 }
 
 // .a9s-annotationlayer {

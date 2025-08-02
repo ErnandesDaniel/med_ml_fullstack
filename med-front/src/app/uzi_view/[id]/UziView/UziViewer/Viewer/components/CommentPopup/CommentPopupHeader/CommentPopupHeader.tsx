@@ -1,20 +1,20 @@
-import React from "react";
-import { Button, Flex, Tag, Typography } from "antd";
-import { DeleteOutlined, UndoOutlined } from "@ant-design/icons";
+import React from 'react'
+import { Button, Flex, Tag, Typography } from 'antd'
+import { DeleteOutlined, UndoOutlined } from '@ant-design/icons'
 
-import { Tirads } from "@/app/uzi_view/[id]/types/types";
+import { Tirads } from '@/app/uzi_view/[id]/types/types'
 
-import { classification } from "./props";
+import { classification } from './props'
 
-const { Text } = Typography;
+const { Text } = Typography
 
 interface CommentPopupHeaderProps {
-    ai: boolean;
-    tirads: Tirads;
-    handleDeleteSegment: () => void;
-    handleUndoDeleteSegment: () => void;
-    isEditingMode: boolean;
-    deleted?: boolean;
+    ai: boolean
+    tirads: Tirads
+    handleDeleteSegment: () => void
+    handleUndoDeleteSegment: () => void
+    isEditingMode: boolean
+    deleted?: boolean
 }
 
 export const CommentPopupHeader: React.FC<CommentPopupHeaderProps> = ({
@@ -25,13 +25,13 @@ export const CommentPopupHeader: React.FC<CommentPopupHeaderProps> = ({
     isEditingMode,
     deleted = false,
 }) => {
-    const result = classification[tirads];
+    const result = classification[tirads]
 
     const schema = {
-        label: ai ? "ИИ" : "Мед специалист",
+        label: ai ? 'ИИ' : 'Мед специалист',
         value: result.text,
         tagColor: result.color,
-    };
+    }
 
     return (
         <Flex align="center" justify="space-between">
@@ -50,5 +50,5 @@ export const CommentPopupHeader: React.FC<CommentPopupHeaderProps> = ({
                 </Button>
             )}
         </Flex>
-    );
-};
+    )
+}

@@ -1,34 +1,37 @@
-import React, { useContext, useEffect } from "react";
-import { Form, Input, Select } from "antd";
-import { useForm } from "antd/es/form/Form";
+import React, { useContext, useEffect } from 'react'
+import { Form, Input, Select } from 'antd'
+import { useForm } from 'antd/es/form/Form'
 
-import { ModalContext } from "@cytology/core/contexts";
-import { useAppDispatch } from "@cytology/core/hooks";
-import { setEditedCytologyInfo } from "@cytology/core/store";
+import { ModalContext } from '@cytology/core/contexts'
+import { useAppDispatch } from '@cytology/core/hooks'
+import { setEditedCytologyInfo } from '@cytology/core/store'
 
-import { ICytolgyInfoPatch, MaterialType } from "@cytology/core/types/cytology";
+import { ICytolgyInfoPatch, MaterialType } from '@cytology/core/types/cytology'
 
-import { localizationOptions } from "./props";
+import { localizationOptions } from './props'
 
-const { TextArea } = Input;
+const { TextArea } = Input
 
 interface ViewEditConclusionProps {
-    editMode?: true;
-    initData: ICytolgyInfoPatch;
+    editMode?: true
+    initData: ICytolgyInfoPatch
 }
 
 interface FormData {
-    materialType: MaterialType;
-    calcitonin: number;
-    thyroglobulin: number;
-    calcitoninFlush: number;
-    diagnosis: string;
+    materialType: MaterialType
+    calcitonin: number
+    thyroglobulin: number
+    calcitoninFlush: number
+    diagnosis: string
 }
 
-const ViewEditConclusion: React.FC<ViewEditConclusionProps> = ({ editMode, initData }) => {
-    const dispatch = useAppDispatch();
-    const { changeModalProps, close } = useContext(ModalContext);
-    const [form] = useForm<FormData>();
+const ViewEditConclusion: React.FC<ViewEditConclusionProps> = ({
+    editMode,
+    initData,
+}) => {
+    const dispatch = useAppDispatch()
+    const { changeModalProps, close } = useContext(ModalContext)
+    const [form] = useForm<FormData>()
 
     const saveConclusion = (values: FormData) => {
         if (
@@ -40,7 +43,8 @@ const ViewEditConclusion: React.FC<ViewEditConclusionProps> = ({ editMode, initD
             (initData.details &&
                 (values.materialType !== initData.details.material_type ||
                     values.calcitonin !== initData.details.calcitonin ||
-                    values.calcitoninFlush !== initData.details.calcitonin_in_flush ||
+                    values.calcitoninFlush !==
+                        initData.details.calcitonin_in_flush ||
                     values.thyroglobulin !== initData.details.thyroglobulin))
         ) {
             dispatch(
@@ -60,9 +64,9 @@ const ViewEditConclusion: React.FC<ViewEditConclusionProps> = ({ editMode, initD
                     calcitonin_in_flush: values.calcitoninFlush,
                     thyroglobulin: values.thyroglobulin,
                 })
-            );
+            )
         }
-    };
+    }
 
     useEffect(() => {
         form.setFieldsValue({
@@ -71,26 +75,31 @@ const ViewEditConclusion: React.FC<ViewEditConclusionProps> = ({ editMode, initD
             thyroglobulin: initData.thyroglobulin,
             calcitoninFlush: initData.calcitonin_in_flush,
             diagnosis: initData.patient_card.diagnosis,
-        });
-    }, []);
+        })
+    }, [])
 
     useEffect(() => {
         changeModalProps({
-            title: "Заключение",
+            title: 'Заключение',
             footer: !editMode ? [] : undefined,
             centered: true,
-            width: "70%",
-            okText: "Подтвердить",
+            width: '70%',
+            okText: 'Подтвердить',
             onOk: () => {
-                form.submit();
-                close();
+                form.submit()
+                close()
             },
-            cancelText: "Отменить",
-        });
-    }, [editMode]);
+            cancelText: 'Отменить',
+        })
+    }, [editMode])
 
     return (
-        <Form layout="vertical" form={form} disabled={!editMode} onFinish={saveConclusion}>
+        <Form
+            layout="vertical"
+            form={form}
+            disabled={!editMode}
+            onFinish={saveConclusion}
+        >
             <Form.Item label="Локализация" name="materialType">
                 <Select options={localizationOptions} />
             </Form.Item>
@@ -113,7 +122,7 @@ const ViewEditConclusion: React.FC<ViewEditConclusionProps> = ({ editMode, initD
                 <TextArea rows={4} />
             </Form.Item> */}
         </Form>
-    );
-};
+    )
+}
 
-export default ViewEditConclusion;
+export default ViewEditConclusion

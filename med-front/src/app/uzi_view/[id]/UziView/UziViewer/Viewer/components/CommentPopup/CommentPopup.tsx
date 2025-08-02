@@ -1,18 +1,21 @@
-import React, { useCallback, useEffect, useState } from "react";
-import { PopupProps } from "@annotorious/react";
-import { Button, Card, Flex, Input } from "antd";
+import React, { useCallback, useEffect, useState } from 'react'
+import { PopupProps } from '@annotorious/react'
+import { Button, Card, Flex, Input } from 'antd'
 
-import { CommentPopupHeader } from "./CommentPopupHeader/CommentPopupHeader";
-import { CommentPopupComment } from "./CommentPopupComment/CommentPopupComment";
+import { CommentPopupHeader } from './CommentPopupHeader/CommentPopupHeader'
+import { CommentPopupComment } from './CommentPopupComment/CommentPopupComment'
 
-import { Tirads } from "@/app/uzi_view/[id]/types/types";
+import { Tirads } from '@/app/uzi_view/[id]/types/types'
 
-import { useAppDispatch, useAppSelector } from "@/app/uzi_view/[id]/store/hook";
-import { deleteSegment, undoDeleteSegment } from "@/app/uzi_view/[id]/store/uziSlice";
+import { useAppDispatch, useAppSelector } from '@/app/uzi_view/[id]/store/hook'
+import {
+    deleteSegment,
+    undoDeleteSegment,
+} from '@/app/uzi_view/[id]/store/uziSlice'
 
 interface CommentPopupProps extends PopupProps {
-    needInput?: boolean;
-    isEditingMode?: boolean;
+    needInput?: boolean
+    isEditingMode?: boolean
 }
 
 const CommentPopup: React.FC<CommentPopupProps> = ({
@@ -22,15 +25,15 @@ const CommentPopup: React.FC<CommentPopupProps> = ({
     needInput = false,
     isEditingMode = false,
 }) => {
-    const dispatch = useAppDispatch();
+    const dispatch = useAppDispatch()
     // const [comment, setComment] = useState('');
-    const node = useAppSelector((state) => state.uzi.selectedNode);
+    const node = useAppSelector((state) => state.uzi.selectedNode)
 
-    const tagging = annotation.bodies.find((body) => body.purpose === "tagging");
-    const response: { tirads: Tirads; ai: boolean; toDelete?: boolean } | undefined = tagging?.value
-        ? JSON.parse(tagging.value)
-        : undefined;
-    const segmentId: string | undefined = tagging?.annotation || undefined;
+    const tagging = annotation.bodies.find((body) => body.purpose === 'tagging')
+    const response:
+        | { tirads: Tirads; ai: boolean; toDelete?: boolean }
+        | undefined = tagging?.value ? JSON.parse(tagging.value) : undefined
+    const segmentId: string | undefined = tagging?.annotation || undefined
 
     // useEffect(() => {
     //     const commentBody = annotation.bodies.find(body => body.purpose === 'commenting');
@@ -54,15 +57,15 @@ const CommentPopup: React.FC<CommentPopupProps> = ({
 
     const onDelete = useCallback(() => {
         if (segmentId) {
-            dispatch(deleteSegment({ nodeId: node?.id ?? "", segmentId }));
+            dispatch(deleteSegment({ nodeId: node?.id ?? '', segmentId }))
         }
-    }, [segmentId]);
+    }, [segmentId])
 
     const onUndoDelete = useCallback(() => {
         if (segmentId) {
-            dispatch(undoDeleteSegment({ nodeId: node?.id ?? "", segmentId }));
+            dispatch(undoDeleteSegment({ nodeId: node?.id ?? '', segmentId }))
         }
-    }, [segmentId]);
+    }, [segmentId])
 
     return (
         <>
@@ -124,7 +127,7 @@ const CommentPopup: React.FC<CommentPopupProps> = ({
                 </Card>
             )}
         </>
-    );
-};
+    )
+}
 
-export default CommentPopup;
+export default CommentPopup

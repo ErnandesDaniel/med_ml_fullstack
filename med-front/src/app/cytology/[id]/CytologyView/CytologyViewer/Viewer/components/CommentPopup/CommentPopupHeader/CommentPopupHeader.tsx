@@ -1,19 +1,19 @@
-import React from "react";
-import { Button, Flex, Tag, Typography } from "antd";
-import { DeleteOutlined, UndoOutlined } from "@ant-design/icons";
+import React from 'react'
+import { Button, Flex, Tag, Typography } from 'antd'
+import { DeleteOutlined, UndoOutlined } from '@ant-design/icons'
 
-import { classification } from "./props";
-import { getHighestProbIndex } from "../../../../../../core/functions/highestProb";
+import { classification } from './props'
+import { getHighestProbIndex } from '../../../../../../core/functions/highestProb'
 
-const { Text } = Typography;
+const { Text } = Typography
 
 interface CommentPopupHeaderProps {
-    ai: boolean;
-    handleDeleteSegment: () => void;
-    handleUndoDeleteSegment: () => void;
-    isEditingMode: boolean;
-    deleted?: boolean;
-    probs?: number[];
+    ai: boolean
+    handleDeleteSegment: () => void
+    handleUndoDeleteSegment: () => void
+    isEditingMode: boolean
+    deleted?: boolean
+    probs?: number[]
 }
 
 export const CommentPopupHeader: React.FC<CommentPopupHeaderProps> = ({
@@ -25,10 +25,10 @@ export const CommentPopupHeader: React.FC<CommentPopupHeaderProps> = ({
     probs,
 }) => {
     const schema = {
-        label: ai ? "ИИ" : "Мед специалист",
+        label: ai ? 'ИИ' : 'Мед специалист',
         value: probs ? getHighestProbIndex(probs) : null,
-        tagColor: "blue",
-    };
+        tagColor: 'blue',
+    }
 
     return (
         <Flex align="center" justify="space-between">
@@ -52,5 +52,5 @@ export const CommentPopupHeader: React.FC<CommentPopupHeaderProps> = ({
                 </Button>
             )}
         </Flex>
-    );
-};
+    )
+}

@@ -1,17 +1,21 @@
-import { Card, Tag, Typography } from "antd";
+import { Card, Tag, Typography } from 'antd'
 
-import { ICytologyHistoryItem } from "@cytology/core/types/cytology";
-import { getHighestProbIndex } from "@cytology/core/functions/highestProb";
+import { ICytologyHistoryItem } from '@cytology/core/types/cytology'
+import { getHighestProbIndex } from '@cytology/core/functions/highestProb'
 
-import { tagColors, TagsKeys, tagTexts } from "./props";
+import { tagColors, TagsKeys, tagTexts } from './props'
 
-const { Link } = Typography;
+const { Link } = Typography
 
-type CytologyHistoryCardProps = ICytologyHistoryItem;
+type CytologyHistoryCardProps = ICytologyHistoryItem
 
 const CytologyHistoryCard: React.FC<CytologyHistoryCardProps> = (props) => {
     const tagKey =
-        props.prev === null ? TagsKeys.created : props.is_last ? TagsKeys.last : TagsKeys.updated;
+        props.prev === null
+            ? TagsKeys.created
+            : props.is_last
+              ? TagsKeys.last
+              : TagsKeys.updated
 
     return (
         <Link href={`/cytology/${props.id}`} key={props.id}>
@@ -23,7 +27,7 @@ const CytologyHistoryCard: React.FC<CytologyHistoryCardProps> = (props) => {
                 {getHighestProbIndex(props.details.probs)}
             </Card>
         </Link>
-    );
-};
+    )
+}
 
-export default CytologyHistoryCard;
+export default CytologyHistoryCard

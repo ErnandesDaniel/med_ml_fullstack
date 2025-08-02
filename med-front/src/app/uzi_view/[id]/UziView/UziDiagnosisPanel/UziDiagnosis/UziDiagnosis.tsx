@@ -1,21 +1,21 @@
-import React from "react";
-import { Flex, Typography, Button } from "antd";
-import { EditOutlined } from "@ant-design/icons";
+import React from 'react'
+import { Flex, Typography, Button } from 'antd'
+import { EditOutlined } from '@ant-design/icons'
 
-import DiagnosisCard from "@/app/uzi_view/[id]/common/DiagnosisCard/DiagnosisCard";
+import DiagnosisCard from '@/app/uzi_view/[id]/common/DiagnosisCard/DiagnosisCard'
 
-import { IDiagnosisInfo } from "@/app/uzi_view/[id]/types/diagnosis";
+import { IDiagnosisInfo } from '@/app/uzi_view/[id]/types/diagnosis'
 
-import "./UziDiagnosis.css";
-import UziInfo from "./UziInfo/UziInfo";
+import './UziDiagnosis.css'
+import UziInfo from './UziInfo/UziInfo'
 
-const { Text } = Typography;
+const { Text } = Typography
 
 interface IUziDiagnosisProps {
-    nodes: IDiagnosisInfo[];
-    openEdit: () => void;
-    selectedNode: IDiagnosisInfo | null;
-    onClickCard: (newValue: IDiagnosisInfo | null) => void;
+    nodes: IDiagnosisInfo[]
+    openEdit: () => void
+    selectedNode: IDiagnosisInfo | null
+    onClickCard: (newValue: IDiagnosisInfo | null) => void
 }
 
 const UziDiagnosis: React.FC<IUziDiagnosisProps> = ({
@@ -38,14 +38,18 @@ const UziDiagnosis: React.FC<IUziDiagnosisProps> = ({
                     />
                 ))}
             </Flex>
-            <Button className="uzi-diagnosis-edit" type="primary" onClick={openEdit}>
+            <Button
+                className="uzi-diagnosis-edit"
+                type="primary"
+                onClick={openEdit}
+            >
                 <Flex gap={10} align="center">
                     <Text className="text-inherit">Редактировать</Text>
                     <EditOutlined />
                 </Flex>
             </Button>
         </Flex>
-    );
-};
+    )
+}
 
-export default UziDiagnosis;
+export default UziDiagnosis

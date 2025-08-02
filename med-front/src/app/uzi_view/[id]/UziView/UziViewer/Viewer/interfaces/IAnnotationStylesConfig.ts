@@ -1,11 +1,10 @@
-import {DrawingStyle} from "@annotorious/core/dist/model/DrawingStyle";
-
+import { DrawingStyle } from '@annotorious/core/dist/model/DrawingStyle'
 
 export interface IAnnotationStyleConfig extends DrawingStyle {
-    hover?: DrawingStyle,
+    hover?: DrawingStyle
     select?: DrawingStyle
 }
 
 export interface IAnnotationStylesConfig {
-    [key: string]: IAnnotationStyleConfig,
+    [key: string]: IAnnotationStyleConfig
 }

@@ -1,35 +1,34 @@
-import React, { useContext } from "react";
-import { Flex, Typography, Button } from "antd";
-import { DisconnectOutlined } from "@ant-design/icons";
+import React, { useContext } from 'react'
+import { Flex, Typography, Button } from 'antd'
+import { DisconnectOutlined } from '@ant-design/icons'
 
-import { useAppSelector } from "@cytology/core/hooks";
-import { ModalContext } from "@cytology/core/contexts";
-import { prepareCytologyInfo } from "@cytology/core/functions/prepareCytologyInfo";
-import { getHighestProbIndex } from "@cytology/core/functions/highestProb";
+import { useAppSelector } from '@cytology/core/hooks'
+import { ModalContext } from '@cytology/core/contexts'
+import { prepareCytologyInfo } from '@cytology/core/functions/prepareCytologyInfo'
+import { getHighestProbIndex } from '@cytology/core/functions/highestProb'
 
+import ViewEditConclusion from '../../ViewEditConclusion/ViewEditConclusion'
+import ViewProbs from './ViewProbs/ViewProbs'
+import CharacteristicsTable from './CharacteristicsTable/CharacteristicsTable'
 
-import ViewEditConclusion from "../../ViewEditConclusion/ViewEditConclusion";
-import ViewProbs from "./ViewProbs/ViewProbs";
-import CharacteristicsTable from "./CharacteristicsTable/CharacteristicsTable";
+import './CytologyInfo.css'
 
-import "./CytologyInfo.css";
-
-const { Text, Title } = Typography;
+const { Text, Title } = Typography
 
 const CytologyInfo = () => {
-    const { open } = useContext(ModalContext);
-    const cytologyInfo = useAppSelector((state) => state.cytology.cytologyInfo);
+    const { open } = useContext(ModalContext)
+    const cytologyInfo = useAppSelector((state) => state.cytology.cytologyInfo)
 
-    const patientData = cytologyInfo?.patient;
-    const probs = cytologyInfo?.details?.probs;
+    const patientData = cytologyInfo?.patient
+    const probs = cytologyInfo?.details?.probs
 
     const handleViewProbs = () => {
         if (probs) {
             open({
                 content: <ViewProbs probs={probs} />,
-            });
+            })
         }
-    };
+    }
 
     const handleResulCharacteristics = () => {
         if (
@@ -45,17 +44,21 @@ const CytologyInfo = () => {
                         }}
                     />
                 ),
-            });
+            })
         }
-    };
+    }
 
     const handleViewConclusion = () => {
         if (cytologyInfo) {
             open({
-                content: <ViewEditConclusion initData={prepareCytologyInfo(cytologyInfo)} />,
-            });
+                content: (
+                    <ViewEditConclusion
+                        initData={prepareCytologyInfo(cytologyInfo)}
+                    />
+                ),
+            })
         }
-    };
+    }
 
     return (
         <>
@@ -63,15 +66,17 @@ const CytologyInfo = () => {
                 <>
                     <Title level={4}>
                         Диагностика {cytologyInfo.diagnostic_marking}-
-                        {cytologyInfo.diagnostic_number} от{" "}
-                        {new Date(cytologyInfo?.diagnos_date).toLocaleDateString()}
+                        {cytologyInfo.diagnostic_number} от{' '}
+                        {new Date(
+                            cytologyInfo?.diagnos_date
+                        ).toLocaleDateString()}
                     </Title>
                     <Flex vertical>
                         <Text type="secondary" strong>
                             Пациент
                         </Text>
                         <Title level={5} className="mt-0">
-                            {patientData.last_name} {patientData.first_name}{" "}
+                            {patientData.last_name} {patientData.first_name}{' '}
                             {patientData.fathers_name}
                         </Title>
                     </Flex>
@@ -80,7 +85,9 @@ const CytologyInfo = () => {
                             Дата рождения
                         </Text>
                         <Title level={5} className="mt-0">
-                            {new Date(patientData.birth_date).toLocaleDateString()}
+                            {new Date(
+                                patientData.birth_date
+                            ).toLocaleDateString()}
                         </Title>
                     </Flex>
                     <Flex vertical>
@@ -143,11 +150,13 @@ const CytologyInfo = () => {
             )}
             {(!patientData || !cytologyInfo) && (
                 <Flex align="center" justify="center">
-                    <DisconnectOutlined style={{ fontSize: 25, color: "#8c8c8c" }} />
+                    <DisconnectOutlined
+                        style={{ fontSize: 25, color: '#8c8c8c' }}
+                    />
                 </Flex>
             )}
         </>
-    );
-};
+    )
+}
 
-export default CytologyInfo;
+export default CytologyInfo

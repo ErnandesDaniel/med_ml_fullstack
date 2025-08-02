@@ -1,17 +1,17 @@
-import React from "react";
+import React from 'react'
 
-import { useAppDispatch, useAppSelector } from "@cytology/core/hooks";
-import { setCurrentSegment } from "@cytology/core/store";
-import { Modes } from "@/app/cytology/[id]/core/types/basic";
-import { IGroupedSegments, SegmentType } from "@cytology/core/types/segments";
+import { useAppDispatch, useAppSelector } from '@cytology/core/hooks'
+import { setCurrentSegment } from '@cytology/core/store'
+import { Modes } from '@/app/cytology/[id]/core/types/basic'
+import { IGroupedSegments, SegmentType } from '@cytology/core/types/segments'
 
-import CytologyDiagnosisEdit from "./CytologyDiagnosisEdit/CytologyDiagnosisEdit";
-import CytologyDiagnosis from "./CytologyDiagnosis/CytologyDiagnosis";
+import CytologyDiagnosisEdit from './CytologyDiagnosisEdit/CytologyDiagnosisEdit'
+import CytologyDiagnosis from './CytologyDiagnosis/CytologyDiagnosis'
 
 interface CytologyDiagnosisPanelProps {
-    mode: Modes;
-    segments: IGroupedSegments[];
-    changeMode: (newMode: Modes) => void;
+    mode: Modes
+    segments: IGroupedSegments[]
+    changeMode: (newMode: Modes) => void
 }
 
 const CytologyDiagnosisPanel: React.FC<CytologyDiagnosisPanelProps> = ({
@@ -19,19 +19,25 @@ const CytologyDiagnosisPanel: React.FC<CytologyDiagnosisPanelProps> = ({
     mode,
     changeMode,
 }) => {
-    const dispatch = useAppDispatch();
-    const currentSegment = useAppSelector((state) => state.segment.currentSegment);
+    const dispatch = useAppDispatch()
+    const currentSegment = useAppSelector(
+        (state) => state.segment.currentSegment
+    )
 
     const handleClickCard = (segmentType: SegmentType) => {
-        dispatch(setCurrentSegment(segmentType === currentSegment ? null : segmentType));
-    };
+        dispatch(
+            setCurrentSegment(
+                segmentType === currentSegment ? null : segmentType
+            )
+        )
+    }
 
     return (
         <>
-            {mode === "view" ? (
+            {mode === 'view' ? (
                 <CytologyDiagnosis
                     segments={segments}
-                    openEdit={() => changeMode("edit")}
+                    openEdit={() => changeMode('edit')}
                     currentSegment={currentSegment}
                     onClickCard={handleClickCard}
                 />
@@ -39,12 +45,12 @@ const CytologyDiagnosisPanel: React.FC<CytologyDiagnosisPanelProps> = ({
                 <CytologyDiagnosisEdit
                     segments={segments}
                     currentSegment={currentSegment}
-                    closeEdit={() => changeMode("view")}
+                    closeEdit={() => changeMode('view')}
                     onClickCard={handleClickCard}
                 />
             )}
         </>
-    );
-};
+    )
+}
 
-export default CytologyDiagnosisPanel;
+export default CytologyDiagnosisPanel

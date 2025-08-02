@@ -1,14 +1,18 @@
-import React from "react";
-import { ImageAnnotationPopup, ImageAnnotator, UserSelectAction } from "@annotorious/react";
+import React from 'react'
+import {
+    ImageAnnotationPopup,
+    ImageAnnotator,
+    UserSelectAction,
+} from '@annotorious/react'
 
-import CommentPopup from "../CommentPopup/CommentPopup";
+import CommentPopup from '../CommentPopup/CommentPopup'
 
 interface ImageViewerProps {
-    drawingEnable?: boolean;
-    tool: "rectangle" | "polygon" | null;
-    needPopup?: boolean;
-    imageUrl: string;
-    needInputPopup?: boolean;
+    drawingEnable?: boolean
+    tool: 'rectangle' | 'polygon' | null
+    needPopup?: boolean
+    imageUrl: string
+    needInputPopup?: boolean
 }
 
 const ImageViewer: React.FC<ImageViewerProps> = ({
@@ -22,8 +26,12 @@ const ImageViewer: React.FC<ImageViewerProps> = ({
         <>
             <ImageAnnotator
                 drawingEnabled={drawingEnable}
-                tool={tool ? tool : ""}
-                userSelectAction={!drawingEnable ? UserSelectAction.SELECT : UserSelectAction.EDIT}
+                tool={tool ? tool : ''}
+                userSelectAction={
+                    !drawingEnable
+                        ? UserSelectAction.SELECT
+                        : UserSelectAction.EDIT
+                }
             >
                 <img src={imageUrl} alt="" />
             </ImageAnnotator>
@@ -40,7 +48,7 @@ const ImageViewer: React.FC<ImageViewerProps> = ({
                 />
             )}
         </>
-    );
-};
+    )
+}
 
-export default ImageViewer;
+export default ImageViewer

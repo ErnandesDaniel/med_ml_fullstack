@@ -1,18 +1,18 @@
-import { ShapeType } from "@annotorious/openseadragon";
+import { ShapeType } from '@annotorious/openseadragon'
 
-import { ISegmentRedux } from "@/app/uzi_view/[id]/types/segments";
+import { ISegmentRedux } from '@/app/uzi_view/[id]/types/segments'
 
-import { getMaxType } from "./getMaxType";
-import { minMaxPoint } from "./minMaxPoint";
+import { getMaxType } from './getMaxType'
+import { minMaxPoint } from './minMaxPoint'
 
 export const generateAnnotation = (segment: ISegmentRedux) => {
     return {
         id: segment.id,
         bodies: [
             {
-                id: "",
+                id: '',
                 annotation: segment.id,
-                purpose: "tagging",
+                purpose: 'tagging',
                 value: JSON.stringify({
                     tirads: getMaxType(segment),
                     ai: segment.ai,
@@ -30,5 +30,5 @@ export const generateAnnotation = (segment: ISegmentRedux) => {
                 },
             },
         },
-    };
-};
+    }
+}

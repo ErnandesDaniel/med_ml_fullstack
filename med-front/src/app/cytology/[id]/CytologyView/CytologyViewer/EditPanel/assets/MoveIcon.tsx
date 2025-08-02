@@ -1,10 +1,10 @@
-import React from "react";
+import React from 'react'
 
 interface MoveIconProps {
-    fillColor?: string;
+    fillColor?: string
 }
 
-const MoveIcon: React.FC<MoveIconProps> = ({ fillColor = "#000000" }) => {
+const MoveIcon: React.FC<MoveIconProps> = ({ fillColor = '#000000' }) => {
     return (
         <svg
             fill="none"
@@ -24,7 +24,7 @@ const MoveIcon: React.FC<MoveIconProps> = ({ fillColor = "#000000" }) => {
             <line x1="2" x2="22" y1="12" y2="12" />
             <line x1="12" x2="12" y1="2" y2="22" />
         </svg>
-    );
-};
+    )
+}
 
-export default MoveIcon;
+export default MoveIcon

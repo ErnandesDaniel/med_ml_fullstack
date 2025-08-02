@@ -1,26 +1,29 @@
-import { Table } from "antd";
-import { useContext, useEffect } from "react";
+import { Table } from 'antd'
+import { useContext, useEffect } from 'react'
 
-import { ModalContext } from "@cytology/core/contexts";
-import { BETHESDA_CATEGORIES, getHighestProbIndex } from "@cytology/core/functions/highestProb";
+import { ModalContext } from '@cytology/core/contexts'
+import {
+    BETHESDA_CATEGORIES,
+    getHighestProbIndex,
+} from '@cytology/core/functions/highestProb'
 
-import "./ViewProbs.css";
+import './ViewProbs.css'
 
 interface ViewProbsProps {
-    probs: number[];
+    probs: number[]
 }
 
 const ViewProbs: React.FC<ViewProbsProps> = ({ probs }) => {
-    const { changeModalProps } = useContext(ModalContext);
-    const highestIndex = getHighestProbIndex(probs);
+    const { changeModalProps } = useContext(ModalContext)
+    const highestIndex = getHighestProbIndex(probs)
 
     useEffect(() => {
         changeModalProps({
-            title: "Новообразования",
+            title: 'Новообразования',
             footer: [],
             centered: true,
-        });
-    }, []);
+        })
+    }, [])
 
     return (
         <Table
@@ -33,12 +36,14 @@ const ViewProbs: React.FC<ViewProbsProps> = ({ probs }) => {
                 title: `Bethesda ${BETHESDA_CATEGORIES[index]}`,
             }))}
             columns={[
-                { title: "Категория", dataIndex: "title", key: "title" },
-                { title: "Значение", dataIndex: "value", key: "value" },
+                { title: 'Категория', dataIndex: 'title', key: 'title' },
+                { title: 'Значение', dataIndex: 'value', key: 'value' },
             ]}
-            rowClassName={(record) => (record.title === highestIndex ? "highlight-row" : "")}
+            rowClassName={(record) =>
+                record.title === highestIndex ? 'highlight-row' : ''
+            }
         />
-    );
-};
+    )
+}
 
-export default ViewProbs;
+export default ViewProbs

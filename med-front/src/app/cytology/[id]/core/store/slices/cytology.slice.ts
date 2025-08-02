@@ -1,35 +1,42 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-import { ICytolgyInfoPatch, ICytologyInfo } from "@cytology/core/types/cytology";
+import { ICytolgyInfoPatch, ICytologyInfo } from '@cytology/core/types/cytology'
 
 interface uziState {
-    cytologyId: number;
-    cytologyInfo: ICytologyInfo | null;
-    cytologyInfoEdited: ICytolgyInfoPatch | null;
+    cytologyId: number
+    cytologyInfo: ICytologyInfo | null
+    cytologyInfoEdited: ICytolgyInfoPatch | null
 }
 
 const initialState: uziState = {
     cytologyId: 0,
     cytologyInfo: null,
     cytologyInfoEdited: null,
-};
+}
 
 const cytologySlice = createSlice({
-    name: "cytologySlice",
+    name: 'cytologySlice',
     initialState,
     reducers: {
         setCytologyId: (state, action: PayloadAction<number>) => {
-            state.cytologyId = action.payload;
+            state.cytologyId = action.payload
         },
-        setCytologyInfo: (state, action: PayloadAction<ICytologyInfo | null>) => {
-            state.cytologyInfo = action.payload;
+        setCytologyInfo: (
+            state,
+            action: PayloadAction<ICytologyInfo | null>
+        ) => {
+            state.cytologyInfo = action.payload
         },
-        setEditedCytologyInfo: (state, action: PayloadAction<ICytolgyInfoPatch | null>) => {
-            state.cytologyInfoEdited = action.payload;
+        setEditedCytologyInfo: (
+            state,
+            action: PayloadAction<ICytolgyInfoPatch | null>
+        ) => {
+            state.cytologyInfoEdited = action.payload
         },
     },
-});
+})
 
-export const { setCytologyInfo, setCytologyId, setEditedCytologyInfo } = cytologySlice.actions;
+export const { setCytologyInfo, setCytologyId, setEditedCytologyInfo } =
+    cytologySlice.actions
 
-export default cytologySlice;
+export default cytologySlice

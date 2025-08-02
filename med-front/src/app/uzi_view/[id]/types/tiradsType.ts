@@ -17,4 +17,4 @@ export const tiradsOptions = [
         label: 'EU-TIRADS 5',
         value: 'tirads_5',
     },
-];
+]
