@@ -2,8 +2,7 @@ import { Annotation } from '@annotorious/react'
 import { AnnotationBody } from '@annotorious/core/dist/model/Annotation'
 import { AnnotationState } from '@annotorious/core/dist/model/AnnotationState'
 import { DrawingStyle } from '@annotorious/core/dist/model/DrawingStyle'
-
-import { annotationTypesStyles } from '../config'
+import { annotationTypesStyles } from '@/app/uzi_view/[id]/UziView/UziViewer/Viewer/config'
 
 export const selectStyleFromConfig = (
     annotation: Annotation,

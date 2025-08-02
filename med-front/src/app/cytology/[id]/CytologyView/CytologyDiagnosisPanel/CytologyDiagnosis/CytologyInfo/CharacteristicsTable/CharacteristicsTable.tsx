@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { Table } from 'antd'
 
-import { ModalContext } from '@cytology/core/contexts'
+import { ModalContext } from '@/app/cytology/[id]/core/contexts'
 
 import {
     ICytologyInfoCellCharacteristics,
     ICytologyInfoClusterCharacteristics,
-} from '@cytology/core/types/cytology'
+} from '@/app/cytology/[id]/core/types/cytology'
 
 import { characteristicsDict, columns, TableItem } from './props'
 

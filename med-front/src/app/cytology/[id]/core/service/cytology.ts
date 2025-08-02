@@ -1,19 +1,20 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
-import { prepareHeaders } from '@cytology/core/functions/prepareHeaders'
+import { prepareHeaders } from '@/app/cytology/[id]/core/functions/prepareHeaders'
+import { IPoint } from '@/app/uzi_view/[id]/UziView/UziViewer/Viewer/interfaces/queries'
 
-import { IPoint } from '@cytology/CytologyView/CytologyViewer/Viewer/interfaces/queries'
+
 import {
     ICytolgyInfoPatch,
     ICytology,
     ICytologyHistory,
-} from '@cytology/core/types/cytology'
+} from '@/app/cytology/[id]/core/types/cytology'
 import {
     IGroupedSegments,
     ISegmentCreate,
     ISegmentResponse,
     ISegmentStack,
-} from '@cytology/core/types/segments'
+} from '@/app/cytology/[id]/core/types/segments'
 
 export const cytologyApi = createApi({
     reducerPath: 'cytologyApi',

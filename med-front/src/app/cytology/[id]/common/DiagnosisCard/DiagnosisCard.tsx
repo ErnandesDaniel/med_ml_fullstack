@@ -8,7 +8,7 @@ import {
 } from '@ant-design/icons'
 
 import { Modals } from '@/app/cytology/[id]/core/types/basic'
-import { segmentsTranslated, SegmentType } from '@cytology/core/types/segments'
+import { segmentsTranslated, SegmentType } from '@/app/cytology/[id]/core/types/segments'
 
 import './DiagnosisCard.css'
 

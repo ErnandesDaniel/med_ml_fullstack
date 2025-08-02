@@ -1,11 +1,10 @@
 import { Form, Select } from 'antd'
 import { useForm } from 'antd/es/form/Form'
 import { useContext, useEffect } from 'react'
-
-import { ModalContext } from '@cytology/core/contexts'
-import { useAppDispatch } from '@cytology/core/hooks'
-import { addNewGroupedType } from '@cytology/core/store'
-import { segmentsTranslated, SegmentType } from '@cytology/core/types/segments'
+import { ModalContext } from '@/app/cytology/[id]/core/contexts'
+import { useAppDispatch } from '@/app/cytology/[id]/core/hooks'
+import { addNewGroupedType } from '@/app/cytology/[id]/core/store'
+import { segmentsTranslated, SegmentType } from '@/app/cytology/[id]/core/types/segments'
 
 type AddSegmentForm = {
     type: SegmentType

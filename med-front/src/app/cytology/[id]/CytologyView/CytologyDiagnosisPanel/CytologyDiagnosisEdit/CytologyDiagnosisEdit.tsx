@@ -9,8 +9,8 @@ import { Flex, Typography, Button } from 'antd'
 import { PlusOutlined } from '@ant-design/icons'
 import { useRouter } from 'next/navigation'
 
-import { useAppSelector } from '@cytology/core/hooks'
-import { ModalContext } from '@cytology/core/contexts'
+import { useAppSelector } from '@/app/cytology/[id]/core/hooks'
+import { ModalContext } from '@/app/cytology/[id]/core/contexts'
 import {
     useAddNewReviseMutation,
     useAddSegmentMutation,
@@ -18,17 +18,17 @@ import {
     useLazyGetCytologySegmentQuery,
     usePatchCytologyInfoMutation,
     usePatchSegmentMutation,
-} from '@cytology/core/service/cytology'
-import { prepareCytologyInfo } from '@cytology/core/functions/prepareCytologyInfo'
+} from '@/app/cytology/[id]/core/service/cytology'
+import { prepareCytologyInfo } from '@/app/cytology/[id]/core/functions/prepareCytologyInfo'
 
 import {
     IGroupedSegments,
     ISegmentStack,
     SegmentType,
     segmentTypes,
-} from '@cytology/core/types/segments'
+} from '@/app/cytology/[id]/core/types/segments'
 
-import DiagnosisCard from '@cytology/common/DiagnosisCard/DiagnosisCard'
+import DiagnosisCard from '@/app/cytology/[id]/common/DiagnosisCard/DiagnosisCard'
 
 import BlockSpace from '../BlockSpace/BlockSpace'
 import AddSegment from './AddSegment/AddSegment'

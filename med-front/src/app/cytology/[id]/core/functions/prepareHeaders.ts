@@ -1,4 +1,4 @@
-import { AuthState } from '@cytology/core/store/slices/auth.slice'
+import { AuthState } from '@/app/cytology/[id]/core/store/slices/auth.slice'
 
 export const prepareHeaders = async (
     headers: Headers,

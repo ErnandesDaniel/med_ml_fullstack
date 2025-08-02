@@ -2,8 +2,8 @@ import React, { useEffect, useRef } from 'react'
 import { Flex, Radio, Typography } from 'antd'
 import type { CheckboxGroupProps } from 'antd/es/checkbox'
 
-import { useAppDispatch } from '@cytology/core/hooks'
-import { setToolPanelHeight } from '@cytology/core/store'
+import { useAppDispatch } from '@/app/cytology/[id]/core/hooks'
+import { setToolPanelHeight } from '@/app/cytology/[id]/core/store'
 import { Tools } from '@/app/cytology/[id]/core/types/basic'
 
 import PolygonIcon from './assets/PolygonIcon'

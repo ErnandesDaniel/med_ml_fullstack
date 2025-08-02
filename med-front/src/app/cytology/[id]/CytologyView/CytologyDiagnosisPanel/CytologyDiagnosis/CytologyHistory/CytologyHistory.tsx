@@ -1,8 +1,8 @@
 import { useContext, useEffect } from 'react'
 import { Flex, Timeline } from 'antd'
 
-import { ModalContext } from '@cytology/core/contexts'
-import { ICytologyHistory } from '@cytology/core/types/cytology'
+import { ModalContext } from '@/app/cytology/[id]/core/contexts'
+import { ICytologyHistory } from '@/app/cytology/[id]/core/types/cytology'
 
 import CytologyHistoryCard from './CytologyHistoryCard/CytologyHistoryCard'
 

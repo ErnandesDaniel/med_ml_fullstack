@@ -2,8 +2,8 @@ import { Session } from 'next-auth'
 import { useSession } from 'next-auth/react'
 import { ReactNode, useEffect } from 'react'
 
-import { useAppDispatch } from '@cytology/core/hooks'
-import { setToken } from '@cytology/core/store'
+import { useAppDispatch } from '@/app/cytology/[id]/core/hooks'
+import { setToken } from '@/app/cytology/[id]/core/store'
 
 interface PageWrapperProps {
     children: ReactNode

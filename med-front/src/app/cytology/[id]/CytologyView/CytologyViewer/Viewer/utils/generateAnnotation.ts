@@ -1,6 +1,6 @@
 import { ShapeType } from '@annotorious/openseadragon'
 
-import { ISegmentStack } from '@cytology/core/types/segments'
+import { ISegmentStack } from '@/app/cytology/[id]/core/types/segments'
 
 import { minMaxPoint } from './minMaxPoint'
 

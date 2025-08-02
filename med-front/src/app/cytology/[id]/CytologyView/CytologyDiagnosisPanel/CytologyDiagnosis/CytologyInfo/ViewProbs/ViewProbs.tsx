@@ -1,11 +1,11 @@
 import { Table } from 'antd'
 import { useContext, useEffect } from 'react'
 
-import { ModalContext } from '@cytology/core/contexts'
+import { ModalContext } from '@/app/cytology/[id]/core/contexts'
 import {
     BETHESDA_CATEGORIES,
     getHighestProbIndex,
-} from '@cytology/core/functions/highestProb'
+} from '@/app/cytology/[id]/core/functions/highestProb'
 
 import './ViewProbs.css'
 

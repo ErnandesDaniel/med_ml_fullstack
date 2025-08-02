@@ -1,13 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import uuid from 'react-uuid'
 
 import {
     IGroupedSegments,
     ISegmentStack,
     SegmentType,
-} from '@cytology/core/types/segments'
-import { IPoint } from '@cytology/CytologyView/CytologyViewer/Viewer/interfaces/queries'
-
+} from '@/app/cytology/[id]/core/types/segments'
+import { IPoint } from '@/app/uzi_view/[id]/UziView/UziViewer/Viewer/interfaces/queries'
 interface segmentState {
     currentSegment: SegmentType | null
     segmentStack: IGroupedSegments[]
@@ -44,7 +42,7 @@ const segmentSlice = createSlice({
                 ...action.payload,
                 is_ai: false,
                 isNew: true,
-                id: uuid(),
+                id: crypto.randomUUID(),
             }
             const existedSegType = state.segmentStack.find(
                 (item) => item.seg_type === action.payload.seg_type

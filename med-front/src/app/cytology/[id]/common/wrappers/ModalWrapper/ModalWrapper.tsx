@@ -2,8 +2,8 @@ import type React from 'react'
 import { useState, type ReactNode } from 'react'
 import { Modal } from 'antd'
 
-import { ModalContext } from '@cytology/core/contexts'
-import type { IModalConfig } from '@cytology/core/contexts/ModalContext'
+import { ModalContext } from '@/app/cytology/[id]/core/contexts'
+import type { IModalConfig } from '@/app/cytology/[id]/core/contexts/ModalContext'
 
 import './ModalWrapper.css'
 

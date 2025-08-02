@@ -1,9 +1,9 @@
 import { message } from 'antd'
 import { useEffect, type ReactNode } from 'react'
 
-import { MessageContext } from '@cytology/core/contexts'
-import { useAppDispatch, useAppSelector } from '@cytology/core/hooks'
-import { setError } from '@cytology/core/store'
+import { MessageContext } from '@/app/cytology/[id]/core/contexts'
+import { useAppDispatch, useAppSelector } from '@/app/cytology/[id]/core/hooks'
+import { setError } from '@/app/cytology/[id]/core/store'
 
 interface MessageWrapperProps {
     children: ReactNode

@@ -1,13 +1,13 @@
 import { Spin } from 'antd'
 import { useEffect, useState, type ReactNode } from 'react'
 
-import { LoadingContext } from '@cytology/core/contexts'
-import { useAppDispatch, useAppSelector } from '@cytology/core/hooks'
+import { LoadingContext } from '@/app/cytology/[id]/core/contexts'
+import { useAppDispatch, useAppSelector } from '@/app/cytology/[id]/core/hooks'
 import {
     addLoading,
     removeAllLoadings,
     removeLoading,
-} from '@cytology/core/store'
+} from '@/app/cytology/[id]/core/store'
 
 import './LoadingWrapper.css'
 

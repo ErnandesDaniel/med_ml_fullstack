@@ -7,7 +7,7 @@ import {
 } from '@annotorious/react'
 
 import { Tools } from '@/app/cytology/[id]/core/types/basic'
-import { ISegmentStack } from '@cytology/core/types/segments'
+import { ISegmentStack } from '@/app/cytology/[id]/core/types/segments'
 import { IPoint } from './interfaces/queries'
 
 import OSDViewer from './components/OSDViewer/OSDViewer'

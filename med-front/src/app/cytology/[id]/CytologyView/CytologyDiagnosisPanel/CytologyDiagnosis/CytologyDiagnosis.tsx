@@ -3,12 +3,12 @@ import { Flex, Typography, Button } from 'antd'
 import { EditOutlined, HistoryOutlined } from '@ant-design/icons'
 import { skipToken } from '@reduxjs/toolkit/query'
 
-import DiagnosisCard from '@cytology/common/DiagnosisCard/DiagnosisCard'
+import DiagnosisCard from '@/app/cytology/[id]/common/DiagnosisCard/DiagnosisCard'
 
-import { IGroupedSegments, SegmentType } from '@cytology/core/types/segments'
-import { useGetCytologyHistoryQuery } from '@cytology/core/service/cytology'
-import { useAppSelector } from '@cytology/core/hooks'
-import { ModalContext } from '@cytology/core/contexts'
+import { IGroupedSegments, SegmentType } from '@/app/cytology/[id]/core/types/segments'
+import { useGetCytologyHistoryQuery } from '@/app/cytology/[id]/core/service/cytology'
+import { useAppSelector } from '@/app/cytology/[id]/core/hooks'
+import { ModalContext } from '@/app/cytology/[id]/core/contexts'
 
 import CytologyInfo from './CytologyInfo/CytologyInfo'
 

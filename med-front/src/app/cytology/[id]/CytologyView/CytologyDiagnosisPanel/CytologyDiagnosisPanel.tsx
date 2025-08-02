@@ -1,9 +1,9 @@
 import React from 'react'
 
-import { useAppDispatch, useAppSelector } from '@cytology/core/hooks'
-import { setCurrentSegment } from '@cytology/core/store'
+import { useAppDispatch, useAppSelector } from '@/app/cytology/[id]/core/hooks'
+import { setCurrentSegment } from '@/app/cytology/[id]/core/store'
 import { Modes } from '@/app/cytology/[id]/core/types/basic'
-import { IGroupedSegments, SegmentType } from '@cytology/core/types/segments'
+import { IGroupedSegments, SegmentType } from '@/app/cytology/[id]/core/types/segments'
 
 import CytologyDiagnosisEdit from './CytologyDiagnosisEdit/CytologyDiagnosisEdit'
 import CytologyDiagnosis from './CytologyDiagnosis/CytologyDiagnosis'

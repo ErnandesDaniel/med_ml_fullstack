@@ -2,11 +2,11 @@ import React, { useContext, useEffect } from 'react'
 import { Form, Input, Select } from 'antd'
 import { useForm } from 'antd/es/form/Form'
 
-import { ModalContext } from '@cytology/core/contexts'
-import { useAppDispatch } from '@cytology/core/hooks'
-import { setEditedCytologyInfo } from '@cytology/core/store'
+import { ModalContext } from '@/app/cytology/[id]/core/contexts'
+import { useAppDispatch } from '@/app/cytology/[id]/core/hooks'
+import { setEditedCytologyInfo } from '@/app/cytology/[id]/core/store'
 
-import { ICytolgyInfoPatch, MaterialType } from '@cytology/core/types/cytology'
+import { ICytolgyInfoPatch, MaterialType } from '@/app/cytology/[id]/core/types/cytology'
 
 import { localizationOptions } from './props'
 

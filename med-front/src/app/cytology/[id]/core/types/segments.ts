@@ -1,4 +1,4 @@
-import { IPoint } from '@cytology/CytologyView/CytologyViewer/Viewer/interfaces/queries'
+import { IPoint } from '@/app/uzi_view/[id]/UziView/UziViewer/Viewer/interfaces/queries'
 import { IPaginated } from './basic'
 
 export type GroupType = 'CE' | 'CL' | 'ME'
