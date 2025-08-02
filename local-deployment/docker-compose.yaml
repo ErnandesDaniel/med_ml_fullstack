@@ -116,22 +116,22 @@ services:
   ml_service:
     container_name: ml_service
     build: 
-      context: ./ml_service/
+      context: ../med-back/ml_service/
       dockerfile: Dockerfile
     depends_on:
       - redpanda-0
     profiles:
       - app
     env_file:
-      - ./ml_service/.env-docker
+      - ../med-back/ml_service/.env-docker
 
   auth_service:
     container_name: auth_service
     build:
-      context: ./auth/
+      context: ../med-back/auth/
       dockerfile: Dockerfile
     env_file:
-      - ./auth/.env-docker
+      - ../med-back/auth/.env-docker
     ports:
       - 50040:50055
     profiles:
@@ -140,10 +140,10 @@ services:
   med_service:
     container_name: med_service
     build:
-      context: ./med/
+      context: ../med-back/med/
       dockerfile: Dockerfile
     env_file:
-      - ./med/.env-docker
+      - ../med-back/med/.env-docker
     ports:
       - 50050:50055
     profiles:
@@ -152,23 +152,24 @@ services:
   uzi_service:
     container_name: uzi_service
     build:
-      context: ./uzi/
+      context: ../med-back/uzi/
       dockerfile: Dockerfile
     env_file:
-      - ./uzi/.env-docker
+      - ../med-back/uzi/.env-docker
     ports:
       - 50060:50055
     profiles:
       - app
 
 
+
   composition_api:
     container_name: composition_api
     build:
-      context: ./composition-api/
+      context: ../med-back/composition-api/
       dockerfile: Dockerfile
     env_file:
-      - ./composition-api/.env-docker
+      - ../med-back/composition-api/.env-docker
     ports:
       - 8080:50055
     depends_on:
@@ -176,5 +177,17 @@ services:
       - uzi_service
       - med_service
       - auth_service
+    profiles:
+      - app
+
+  frontend:_service:
+    container_name: frontend:_service
+    build:
+      context: ../med-front/
+      dockerfile: Dockerfile
+    env_file:
+      - ../med-front/.env
+    ports:
+      - "3000:3000"
     profiles:
       - app
