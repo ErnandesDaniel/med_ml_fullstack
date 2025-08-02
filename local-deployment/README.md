@@ -5,6 +5,9 @@
 1) docker compose --profile deps up -d
 2) docker compose --profile app up -d
 
+### Посмотреть API можно по адресу:
+http://localhost:8080/docs/
+
 ### Подробная инструкция для развертывания и первого запуска:
 
 1) docker compose --profile deps up -d
@@ -23,7 +26,19 @@
         - uziupload
         - uzisplitted
         - uziprocessed
-5) docker compose --profile app up -d
+5) Заходим в контейнер БД и создаем базы данных:
+
+   docker exec -it <имя_или_id_контейнера с БД> bash
+
+   psql -U postgres
+
+   create database uzidb;
+
+   create database meddb;
+
+   create database authdb;
+
+6) docker compose --profile app up -d
 
 
 
