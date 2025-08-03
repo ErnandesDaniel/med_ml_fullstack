@@ -1,6 +1,6 @@
 'use client'
 import { useCallback, useMemo } from 'react'
-import { Flex, Form, notification } from 'antd'
+import { Flex, Form } from 'antd'
 import Link from 'next/link'
 import TextField from '@/components/Universal/TextField/TextField'
 import Text from '@/components/Universal/Text/Text'
@@ -12,8 +12,6 @@ import noop from 'lodash-es/noop'
 import { signIn } from 'next-auth/react'
 import isHaveEmailErrors from '@/utils/isHaveEmailErrors'
 import { useRouter } from 'next/navigation'
-import useAPI from '@/utils/useAPI/useAPI'
-import { NotificationProvider } from '@/utils/NotificationProvider'
 
 const {
     IS_ERROR_EMAIL_TEXT,
@@ -24,18 +22,9 @@ const {
     IS_NOT_EXIST_ACCOUNT,
     REGISTER_LINK_TEXT,
     ENTER_BUTTON_TEXT,
-    IS_LOGIN_ERROR,
 } = Templates
 
 export default function LoginForm() {
-    const [LoginError, LoginCallback] = useAPI<any>({
-        requestMethod: 'post',
-        isCallback: true,
-        authRequired: false,
-        APIController: 'login',
-        errorTemplate: IS_LOGIN_ERROR,
-        APIMethod: '',
-    })
 
     const router = useRouter()
 
@@ -62,8 +51,7 @@ export default function LoginForm() {
             signIn('credentials', {
                 email: email,
                 password: password,
-                redirect: true,
-                callbackUrl: '/patients',
+                redirect: false,
             })
                 .then(async (res) => {
                     console.log('enter', res)

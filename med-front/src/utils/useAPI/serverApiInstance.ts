@@ -1,7 +1,6 @@
 'use server'
 import { serverApiInstanceProps } from '@/utils/useAPI/Types'
 import apiInstance from '@/utils/apiInstance'
-import { router } from 'next/client'
 
 export async function serverApiInstance<T>({
     data,

@@ -132,7 +132,6 @@ const authOptions: any = {
         signIn({ user }: { user: any }) {
             console.log('Это функция входа')
             console.log('user', user)
-
             return !!user?.data.refreshToken
         },
     },
