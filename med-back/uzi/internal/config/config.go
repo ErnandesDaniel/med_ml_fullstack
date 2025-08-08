@@ -8,7 +8,7 @@ type Config struct {
 }
 
 type App struct {
-	Url string `env:"APP_URL" env-default:"localhost:50060"`
+	Url string `env:"APP_URL" env-default:"localhost:50053"`
 }
 
 type DB struct {

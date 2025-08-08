@@ -157,7 +157,7 @@ services:
     env_file:
       - ../med-back/uzi/.env-docker
     ports:
-      - 50060:50055
+      - 50053:50055
     profiles:
       - app
 
