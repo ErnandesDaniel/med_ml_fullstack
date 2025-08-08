@@ -1,7 +1,7 @@
 name: local-deployment-med-ml
-  
+
 volumes:
-  redpanda-0: 
+  redpanda-0:
   minio-s3:
   postgres:
 
@@ -21,7 +21,7 @@ services:
       - deps
       - app
     environment:
-      POSTGRES_MULTIPLE_DATABASES: authdb,meddb,uzidb
+      POSTGRES_MULTIPLE_DATABASES: authdb,meddb,uzidb,billingdb
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: 1234
 
@@ -35,8 +35,8 @@ services:
       MINIO_ROOT_USER: minioadmin
       MINIO_ROOT_PASSWORD: minioadmin
       MINIO_SERVER_URL: http://localhost:9000
-      MINIO_ACCESS_KEY: NZjt6KmuHQRU7IitYUiW   
-      MINIO_SECRET_KEY: ql9DoBMKyqMxQm8j5LQuKwnn68KFsGqn5jGbL7uL    
+      MINIO_ACCESS_KEY: NZjt6KmuHQRU7IitYUiW
+      MINIO_SECRET_KEY: ql9DoBMKyqMxQm8j5LQuKwnn68KFsGqn5jGbL7uL
     volumes:
       - minio-s3:/data
     command: server --address 0.0.0.0:9000 --console-address 0.0.0.0:9001 /data
@@ -81,7 +81,7 @@ services:
       - 19092:19092
       - 19644:9644
     profiles:
-      - deps 
+      - deps
       - app
   ####################
   # Redpanda Console #
@@ -115,23 +115,23 @@ services:
 
   ml_service:
     container_name: ml_service
-    build: 
-      context: ../med-back/ml_service/
+    build:
+      context: ./ml_service/
       dockerfile: Dockerfile
     depends_on:
       - redpanda-0
     profiles:
       - app
     env_file:
-      - ../med-back/ml_service/.env-docker
+      - ./ml_service/.env-docker
 
   auth_service:
     container_name: auth_service
     build:
-      context: ../med-back/auth/
+      context: ./auth/
       dockerfile: Dockerfile
     env_file:
-      - ../med-back/auth/.env-docker
+      - ./auth/.env-docker
     ports:
       - 50040:50055
     profiles:
@@ -140,10 +140,10 @@ services:
   med_service:
     container_name: med_service
     build:
-      context: ../med-back/med/
+      context: ./med/
       dockerfile: Dockerfile
     env_file:
-      - ../med-back/med/.env-docker
+      - ./med/.env-docker
     ports:
       - 50050:50055
     profiles:
@@ -152,24 +152,23 @@ services:
   uzi_service:
     container_name: uzi_service
     build:
-      context: ../med-back/uzi/
+      context: ./uzi/
       dockerfile: Dockerfile
     env_file:
-      - ../med-back/uzi/.env-docker
+      - ./uzi/.env-docker
     ports:
       - 50060:50055
     profiles:
       - app
 
 
-
   composition_api:
     container_name: composition_api
     build:
-      context: ../med-back/composition-api/
+      context: ./composition-api/
       dockerfile: Dockerfile
     env_file:
-      - ../med-back/composition-api/.env-docker
+      - ./composition-api/.env-docker
     ports:
       - 8080:50055
     depends_on:
@@ -179,6 +178,34 @@ services:
       - auth_service
     profiles:
       - app
+
+  billing_service:
+    container_name: billing_service
+    build:
+      context: ./billing/
+      dockerfile: Dockerfile
+    env_file:
+      - ./billing/.env-docker
+    ports:
+      - 50055:50055
+    depends_on:
+      postgres:
+        condition: service_healthy
+    profiles:
+      - app
+
+  nginx:
+    image: nginx:alpine
+    container_name: nginx
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./certs:/etc/nginx/certs:ro
+    ports:
+      - "80:80"
+      - "443:443"
+    #    depends_on:
+    #      - composition_api
+    restart: always
 
   frontend_service:
     container_name: frontend_service
@@ -191,3 +218,5 @@ services:
       - "3000:3000"
     profiles:
       - app
+
+
