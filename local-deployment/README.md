@@ -38,7 +38,6 @@ http://localhost:8080/docs/
 
    create database authdb;
 
+   create database billingdb;
+
 6) docker compose --profile app up -d
-
-
-

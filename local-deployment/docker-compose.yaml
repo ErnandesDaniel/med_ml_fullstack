@@ -161,7 +161,6 @@ services:
     profiles:
       - app
 
-
   composition_api:
     container_name: composition_api
     build:
@@ -203,8 +202,6 @@ services:
     ports:
       - "80:80"
       - "443:443"
-    depends_on:
-      - composition_api
     restart: always
 
   frontend_service:
